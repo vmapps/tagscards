@@ -12,12 +12,26 @@ Following python modules are required :
 - [Flask](https://flask.palletsprojects.com/)
 - [RethinkDB](https://rethinkdb.com/)
 
-Modules could be installed using following commands:
+Modules could be installed using following command:
 ```
 $ pip install -r requirements.txt
 ```
+Then run the flask server using following command:
+```
+$ $ ./manage.py --help
+Usage: ./manage.py [options]
+
+Options:
+       -b, --bind=ADDRESS  bind to specific ip ADDRESS (default 0.0.0.0)
+       -d, --debug         run in debug mode (default False)
+       -h, --help          display this help and exit
+       -p, --port=PORT     listen to specific PORT (default 8000)
+       -t, --thread        run in threaded mode (default False)
+
+$ ./manage.py --thread
+```
 ## Configuration
-Settings have to be defined into `config.py` file :
+Settings have to be defined into `web/config.py` file :
 ```
 ...
 # database
