@@ -18,7 +18,7 @@ $ pip install -r requirements.txt
 ```
 Then run the flask server using following command:
 ```
-$ $ ./manage.py --help
+$ ./manage.py --help
 Usage: ./manage.py [options]
 
 Options:
