@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form class="form col-md-6 offset-3" id="contacts_form" method="post">
+    <h3 class="p-4">New contact</h3>
+    <div class="form-group row">
+        <label for="contact_fname" class="col-sm-2 col-form-label">First name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="contact_fname" value="{{ contact.fname }}" placeholder="enter first name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact_lname" class="col-sm-2 col-form-label">Last name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="contact_lname" value="{{ contact.lname }}" placeholder="enter last name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact_email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="contact_email" value="{{ contact.email }}" placeholder="enter email address">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact_phone" class="col-sm-2 col-form-label">Phone</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="contact_phone" value="{{ contact.phone }}" placeholder="enter phone number">
+        </div> 
+    </div>
+    <div class="form-group row">
+        <label for="contact_twitter" class="col-sm-2 col-form-label">Twitter</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="contact_twitter" value="{{ contact.twitter }}" placeholder="enter twitter username">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact_tags" class="col-sm-2 col-form-label">Tags</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="contact_tags" id="contact_tags" value="{{ contact.tags|join(',') }}" placeholder="enter tag ...">
+            <small id="emailHelp" class="form-text text-muted">type new tag or choose one from autocompletion, and separate them with commas.</small>
+        </div>
+    </div>
+    {% if contact.id %}
+        <input type="hidden" name="contact_id" value="{{ contact.id }}">
+        <button type="submit" class="btn btn-warning">update contact</button>
+    {% else %}
+        <button type="submit" class="btn btn-primary">add contact</button>
+    {% endif %}
+</form>
+
+{% endblock %}

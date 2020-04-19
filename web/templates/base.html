@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+        <title>{{ config.APP_NAME }}</title>
+
+        <!-- jQuery librairies -->
+        <script src="{{ url_for('static',filename='js/jquery-3.5.0.min.js') }}"></script>
+
+        <!-- Bootstrap 4 librairies -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}" />
+        <script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+
+        <!-- Jquery Suggestags librairies -->
+        <!-- https://github.com/amsify42/jquery.amsify.suggestags -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/amsify.suggestags.css') }}" />
+        <script src="{{ url_for('static',filename='js/jquery.amsify.suggestags.js') }}"></script>
+
+        <!-- custom librairies -->
+        <link rel="stylesheet" href="{{ url_for('static',filename='css/custom.css') }}" />
+        <script src="{{ url_for('static',filename='js/custom.js') }}"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="p-4 m-2 bg-light text-dark">
+        <h1 class="display-12">{{ config.APP_NAME }}</h1>
+        <p class="lead">{{ config.APP_TITLE }}</p>
+
+        <form id="search_form"> 
+            <div class="input-group mb-3">
+                <input id="search_input" type="text" class="form-control" placeholder="search for tags ... (ex: 'london' or 'london,legal')" aria-label="search for tags ...">
+                <div class="input-group-append">
+                  <button id="search_button" class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
+        {% if info %}
+            <a href="{{ url_for('contacts_all') }}" class="btn btn-outline-info btn-sm m-1">
+                all records <span class="badge badge-pill badge-info">{{ info.records }}</span>
+            </a>
+            {% for t in info.tags|dictsort(true) %}
+                <a href="{{ url_for('contacts_tag', id=t[0]) }}" class="btn btn-outline-secondary btn-sm m-1">
+                    {{ t[0] }} <span class="badge badge-pill badge-secondary">{{ t[1] }}</span>
+                </a>
+            {% endfor %}
+        {% endif %}
+
+    </div> 
+</div>
+
+<div class="container-fluid">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>
