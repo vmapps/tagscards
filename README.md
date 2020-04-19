@@ -30,8 +30,8 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 - permissions to add/edit/delete records
 - synrtax check when editing fields
 - pretty nice things to promote tags
-- export functions to vCards
-- export functions for bulk mode
+- export to vCards
+- export for bulk mode
 - ...
 
 ## Samples 
