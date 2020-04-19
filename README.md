@@ -26,6 +26,6 @@ RETHINKDB_PORT = 28015
 RETHINKDB_BASE = 'test'# enable/disable debug mode
 ...
 ```
-## Sample 
+## Samples 
 ![tagscards1](samples/tagscards1.png)
 ![tagscards2](samples/tagscards2.png)
