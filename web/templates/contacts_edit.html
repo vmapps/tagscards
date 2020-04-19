@@ -2,7 +2,11 @@
 {% block content %}
 
 <form class="form col-md-6 offset-3" id="contacts_form" method="post">
-    <h3 class="p-4">New contact</h3>
+    {% if contact.id %}
+        <h3 class="p-4">edit contact</h3>
+    {% else %}
+      <h3 class="p-4">add contact</h3>
+    {% endif %}
     <div class="form-group row">
         <label for="contact_fname" class="col-sm-2 col-form-label">First name</label>
         <div class="col-sm-10">
