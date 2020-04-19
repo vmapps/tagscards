@@ -27,4 +27,5 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 ...
 ```
 ## Sample 
-![tagscards](samples/tagscards.png)
+![tagscards1](samples/tagscards1.png)
+![tagscards2](samples/tagscards2.png)
