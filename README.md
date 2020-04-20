@@ -41,6 +41,9 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 ...
 ```
 ## To do
+- ~~add PGP field~~
+- ~~add position field~~
+- ~~add sort asc/desc on fields~~
 - permissions to add/edit/delete records
 - synrtax check when editing fields
 - pretty nice things to promote tags

@@ -20,9 +20,10 @@
             <th scope="col">#</th>
             <th scope="col">Last name <a href="{{ urlsort }}lname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">First name <a href="{{ urlsort }}fname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
-            <th scope="col">Email <a href="{{ urlsort }}email" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
-            <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Position <a href="{{ urlsort }}position" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">Email <a href="{{ urlsort }}email" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">PGP <a href="{{ urlsort }}pgp" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Tags</th>
             <th scope="col">Actions</th>
         </tr>
@@ -33,9 +34,10 @@
             <th scope="row"><span class="badge badge-light">{{ loop.index }}</span></th>
             <td>{{ c.lname }}</td>
             <td>{{ c.fname }}</td>
-            <td>{{ c.email }}</td>
-            <td>{{ c.phone }}</td>
             <td>{{ c.position }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.pgp }}</td>
+            <td>{{ c.phone }}</td>
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}
@@ -56,5 +58,7 @@
 <p class="p-2">
     <a href="{{ url_for('contacts_add') }}" class="btn btn-primary btn-sm">add new contact</a>
 </p>
+
+<button id="test" class="btn">Test</button>
 
 {% endblock %}

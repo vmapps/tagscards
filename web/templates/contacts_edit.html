@@ -20,9 +20,21 @@
         </div>
     </div>
     <div class="form-group row">
+        <label for="contact_position" class="col-sm-2 col-form-label-sm">Position</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" name="contact_position" value="{{ contact.position }}" placeholder="enter position">
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="contact_email" class="col-sm-2 col-form-label-sm">Email</label>
         <div class="col-sm-10">
             <input type="email" class="form-control form-control-sm" name="contact_email" value="{{ contact.email }}" placeholder="enter email address">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="contact_pgp" class="col-sm-2 col-form-label-sm">PGP</label>
+        <div class="col-sm-10">
+            <input type="pgp" class="form-control form-control-sm" name="contact_pgp" value="{{ contact.pgp }}" placeholder="enter PGP key">
         </div>
     </div>
     <div class="form-group row">
@@ -30,12 +42,6 @@
         <div class="col-sm-10">
             <input type="text" class="form-control form-control-sm" name="contact_phone" value="{{ contact.phone }}" placeholder="enter phone number">
         </div> 
-    </div>
-    <div class="form-group row">
-        <label for="contact_position" class="col-sm-2 col-form-label-sm">Position</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="contact_position" value="{{ contact.position }}" placeholder="enter position">
-        </div>
     </div>
     <div class="form-group row">
         <label for="contact_tags" class="col-sm-2 col-form-label-sm">Tags</label>

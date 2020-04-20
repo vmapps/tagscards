@@ -92,9 +92,10 @@ def contacts_add():
         contact = {}
         contact['lname'] = data['contact_lname']
         contact['fname'] = data['contact_fname']
-        contact['email'] = data['contact_email']
-        contact['phone'] = data['contact_phone']
         contact['position'] = data['contact_position']
+        contact['email'] = data['contact_email']
+        contact['pgp'] = data['contact_pgp']
+        contact['phone'] = data['contact_phone']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
@@ -115,9 +116,10 @@ def contacts_mod(id):
         contact = {}
         contact['lname'] = data['contact_lname']
         contact['fname'] = data['contact_fname']
-        contact['email'] = data['contact_email']
-        contact['phone'] = data['contact_phone']
         contact['position'] = data['contact_position']
+        contact['email'] = data['contact_email']
+        contact['pgp'] = data['contact_pgp']
+        contact['phone'] = data['contact_phone']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
