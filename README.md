@@ -46,11 +46,17 @@ RETHINKDB_PORT = 28015
 RETHINKDB_BASE = 'test'# enable/disable debug mode
 ...
 ```
-## To do
+## Todo list
+- ~~bootstrap 4 integration~~
+- ~~autocompletion for tags input~~
+- ~~search with multiple tags~~
+- ~~actions to add/edit/delete records~~
 - ~~add PGP field~~
 - ~~add position field~~
+- ~~add website field~~
 - ~~add sort asc/desc on fields~~
 - ~~add icons support~~
+- full text search support
 - permissions to add/edit/delete records
 - synrtax check when editing fields
 - pretty nice things to promote tags
