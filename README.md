@@ -8,15 +8,15 @@ Purpose of this very simple tool is to :
 - search for contacts using tags
 
 ## Requirements
-Following python modules are required :
-- [Flask](https://flask.palletsprojects.com/)
-- [RethinkDB](https://rethinkdb.com/)
-
-Some modules are packaged inside app :
+Some modules are packaged with application :
 - [Bootstrap 4](https://getbootstrap.com/)
 - [Font Awesome](https://fontawesome.com/)
 - [jQuery](https://jquery.com/)
 - [Jquery Suggestags](https://github.com/amsify42/jquery.amsify.suggestags)
+
+Following python modules are required :
+- [Flask](https://flask.palletsprojects.com/)
+- [RethinkDB](https://rethinkdb.com/)
 
 Modules could be installed using following command:
 ```
