@@ -2,35 +2,35 @@
 {% block content %}
 
 <p class="p-2">
-    <b>{{ contacts.items|count }}</b> results
-    {% if info.key %}
-        for {% for k in info.key %}<span class="badge badge-secondary">{{ k }}</span> {% endfor %}
+    <small><b>{{ contacts|count }}</b> results</small>
+    {% if info.key[0]|length %}
+        <small>for</small> {% for k in info.key %}<span class="badge badge-secondary">{{ k }}</span> {% endfor %}
     {% endif %}
 </p>
 
 <div class="table-responsive">
     <table class="table table-hover table-sm">
     <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Last name</th>
+        <tr class="">
+            <th scope="col-sm">#</th>
+            <th scope="col-sm">Last name</th>
             <th scope="col">First name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone</th>
-            <th scope="col">Twitter</th>
+            <th scope="col">Position</th>
             <th scope="col">Tags</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         {% for c in contacts %}
-        <tr>
-            <th scope="row">{{ loop.index }}</th>
+        <tr class="">
+            <th scope="row"><span class="badge badge-light">{{ loop.index }}</span></th>
             <td>{{ c.lname }}</td>
             <td>{{ c.fname }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.phone }}</td>
-            <td>{{ c.twitter }}</td>
+            <td>{{ c.position }}</td>
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}

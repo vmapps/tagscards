@@ -3,52 +3,52 @@
 
 <form class="form col-md-6 offset-3" id="contacts_form" method="post">
     {% if contact.id %}
-        <h3 class="p-4">edit contact</h3>
+        <h4 class="p-4">edit contact</h4>
     {% else %}
-      <h3 class="p-4">add contact</h3>
+        <h4 class="p-4">add contact</h4>
     {% endif %}
     <div class="form-group row">
-        <label for="contact_fname" class="col-sm-2 col-form-label">First name</label>
+        <label for="contact_fname" class="col-sm-2 col-form-label-sm">First name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="contact_fname" value="{{ contact.fname }}" placeholder="enter first name">
+            <input type="text" class="form-control form-control-sm" name="contact_fname" value="{{ contact.fname }}" placeholder="enter first name">
         </div>
     </div>
     <div class="form-group row">
-        <label for="contact_lname" class="col-sm-2 col-form-label">Last name</label>
+        <label for="contact_lname" class="col-sm-2 col-form-label-sm">Last name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="contact_lname" value="{{ contact.lname }}" placeholder="enter last name">
+            <input type="text" class="form-control form-control-sm" name="contact_lname" value="{{ contact.lname }}" placeholder="enter last name">
         </div>
     </div>
     <div class="form-group row">
-        <label for="contact_email" class="col-sm-2 col-form-label">Email</label>
+        <label for="contact_email" class="col-sm-2 col-form-label-sm">Email</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" name="contact_email" value="{{ contact.email }}" placeholder="enter email address">
+            <input type="email" class="form-control form-control-sm" name="contact_email" value="{{ contact.email }}" placeholder="enter email address">
         </div>
     </div>
     <div class="form-group row">
-        <label for="contact_phone" class="col-sm-2 col-form-label">Phone</label>
+        <label for="contact_phone" class="col-sm-2 col-form-label-sm">Phone</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="contact_phone" value="{{ contact.phone }}" placeholder="enter phone number">
+            <input type="text" class="form-control form-control-sm" name="contact_phone" value="{{ contact.phone }}" placeholder="enter phone number">
         </div> 
     </div>
     <div class="form-group row">
-        <label for="contact_twitter" class="col-sm-2 col-form-label">Twitter</label>
+        <label for="contact_position" class="col-sm-2 col-form-label-sm">Position</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="contact_twitter" value="{{ contact.twitter }}" placeholder="enter twitter username">
+            <input type="text" class="form-control form-control-sm" name="contact_position" value="{{ contact.position }}" placeholder="enter position">
         </div>
     </div>
     <div class="form-group row">
-        <label for="contact_tags" class="col-sm-2 col-form-label">Tags</label>
+        <label for="contact_tags" class="col-sm-2 col-form-label-sm">Tags</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="contact_tags" id="contact_tags" value="{{ contact.tags|join(',') }}" placeholder="enter tag ...">
+            <input type="text" class="form-control form-control-sm" name="contact_tags" id="contact_tags" value="{{ contact.tags|join(',') }}" placeholder="enter tag ...">
             <small id="emailHelp" class="form-text text-muted">type new tag or choose one from autocompletion, and separate them with commas.</small>
         </div>
     </div>
     {% if contact.id %}
         <input type="hidden" name="contact_id" value="{{ contact.id }}">
-        <button type="submit" class="btn btn-warning">update contact</button>
+        <button type="submit" class="btn btn-warning btn-sm">update contact</button>
     {% else %}
-        <button type="submit" class="btn btn-primary">add contact</button>
+        <button type="submit" class="btn btn-primary btn-sm">add contact</button>
     {% endif %}
 </form>
 

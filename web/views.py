@@ -52,7 +52,7 @@ def get_info(key=''):
 @app.route('/contacts')
 def contacts_all():
     info = get_info()
-    res = r.table('contacts').run()
+    res = r.table('contacts').order_by('lname').run()
 
     return render_template('contacts_list.html',contacts=res,info=info)
 
@@ -63,7 +63,7 @@ def contacts_tag(id):
     info = get_info(id)
     res = r.table('contacts').filter(lambda c:
         c["tags"].contains( r.args(lid) )
-    ).run()
+    ).order_by('lname').run()
 
     return render_template('contacts_list.html',contacts=res,info=info)
 
@@ -77,7 +77,7 @@ def contacts_add():
         contact['fname'] = data['contact_fname']
         contact['email'] = data['contact_email']
         contact['phone'] = data['contact_phone']
-        contact['twitter'] = data['contact_twitter']
+        contact['position'] = data['contact_position']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
@@ -100,7 +100,7 @@ def contacts_mod(id):
         contact['fname'] = data['contact_fname']
         contact['email'] = data['contact_email']
         contact['phone'] = data['contact_phone']
-        contact['twitter'] = data['contact_twitter']
+        contact['position'] = data['contact_position']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
