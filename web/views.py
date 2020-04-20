@@ -46,13 +46,28 @@ def get_info(key=''):
     info['tags'] = tags
 
     return( info )
+
+def get_sort():
+    vsort = request.args.get('sort')
+
+    if( vsort==None ): 
+        return( 'lname' )
+    elif( vsort[0]=='A' ):
+        return( r.asc(vsort[1:]) )
+    elif( vsort[0]=='D' ):
+        return( r.desc(vsort[1:]) )
+
+    return('')
+
 # --------------------------------------------------------
 # ROUTES
 # --------------------------------------------------------
 @app.route('/contacts')
 def contacts_all():
+    vsort = get_sort()
+
     info = get_info()
-    res = r.table('contacts').order_by('lname').run()
+    res = r.table('contacts').order_by(vsort).run()
 
     return render_template('contacts_list.html',contacts=res,info=info)
 
@@ -60,10 +75,12 @@ def contacts_all():
 def contacts_tag(id):
     lid = id.lower().split(',')
 
+    vsort = get_sort()
+    
     info = get_info(id)
     res = r.table('contacts').filter(lambda c:
         c["tags"].contains( r.args(lid) )
-    ).order_by('lname').run()
+    ).order_by(vsort).run()
 
     return render_template('contacts_list.html',contacts=res,info=info)
 
