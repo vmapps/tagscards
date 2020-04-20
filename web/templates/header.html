@@ -1,6 +1,9 @@
 <div class="card">
     <div class="card-header">
-        <h1 class="display-12">{{ config.APP_NAME }}</h1>
+        <a href="{{ url_for('contacts_all') }}"><img src="{{ url_for('static',filename='logo.png') }}" class="float-left mt-2 mr-3 img-thumbnail" /></a>
+        <h1 class="display-12">
+            {{ config.APP_NAME }}
+        </h1>
         <p class="lead">{{ config.APP_TITLE }}</p>
     </div>
 </div>
