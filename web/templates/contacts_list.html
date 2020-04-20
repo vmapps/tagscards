@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% include "search.html" %}
+
 <p class="p-2">
     <small><b>{{ contacts|count }}</b> results</small>
     {% if info.key[0]|length %}
@@ -16,28 +18,28 @@
 <div class="table-responsive">
     <table class="table table-hover table-sm">
     <thead class="thead-dark">
-        <tr class="">
+        <tr class="small">
             <th scope="col">#</th>
-            <th scope="col">Last name <a href="{{ urlsort }}lname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
-            <th scope="col">First name <a href="{{ urlsort }}fname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">Full name <a href="{{ urlsort }}fullname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Position <a href="{{ urlsort }}position" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Email <a href="{{ urlsort }}email" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">PGP <a href="{{ urlsort }}pgp" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">Web</th>
             <th scope="col">Tags</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         {% for c in contacts %}
-        <tr class="">
+        <tr class="small">
             <th scope="row"><span class="badge badge-light">{{ loop.index }}</span></th>
-            <td>{{ c.lname }}</td>
-            <td>{{ c.fname }}</td>
+            <td>{{ c.fullname }}</td>
             <td>{{ c.position }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.pgp }}</td>
             <td>{{ c.phone }}</td>
+            <td>{% if c.website|length %}<a href="{{ c.website }}" target="_new" class="text-black"><i class="fa fa-link"></i></a>{% endif %}</td>
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}
@@ -59,6 +61,6 @@
     <a href="{{ url_for('contacts_add') }}" class="btn btn-primary btn-sm">add new contact</a>
 </p>
 
-<button id="test" class="btn">Test</button>
+<!-- <button id="test" class="btn">Test</button> -->
 
 {% endblock %}

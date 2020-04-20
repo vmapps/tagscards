@@ -51,7 +51,7 @@ def get_sort():
     vsort = request.args.get('sort')
 
     if( vsort==None ): 
-        return( 'lname' )
+        return( 'fullname' )
     elif( vsort[0]=='A' ):
         return( r.asc(vsort[1:]) )
     elif( vsort[0]=='D' ):
@@ -90,12 +90,12 @@ def contacts_add():
         data = request.form
 
         contact = {}
-        contact['lname'] = data['contact_lname']
-        contact['fname'] = data['contact_fname']
+        contact['fullname'] = data['contact_fullname']
         contact['position'] = data['contact_position']
         contact['email'] = data['contact_email']
         contact['pgp'] = data['contact_pgp']
         contact['phone'] = data['contact_phone']
+        contact['website'] = data['contact_website']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
@@ -114,12 +114,12 @@ def contacts_mod(id):
         data = request.form
 
         contact = {}
-        contact['lname'] = data['contact_lname']
-        contact['fname'] = data['contact_fname']
+        contact['fullname'] = data['contact_fullname']
         contact['position'] = data['contact_position']
         contact['email'] = data['contact_email']
         contact['pgp'] = data['contact_pgp']
         contact['phone'] = data['contact_phone']
+        contact['website'] = data['contact_website']
         if( data['contact_tags'] ):
             contact['tags'] = data['contact_tags'].split(',')
         else:
