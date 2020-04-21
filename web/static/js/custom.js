@@ -26,9 +26,10 @@ $( document ).ready(function() {
 
     $('#search_form').submit( function(event){
         // remove spaces, trailing commas and convert to lowercase
-        var tags = $('#search_input').val().replace(/ /g,'').replace(/\,$/,'').toLowerCase();
+        // var search = $('#search_input').val().replace(/ /g,'').replace(/\,$/,'').toLowerCase();
+        var search = $('#search_input').val().toLowerCase();
 
-        if(tags) window.location.href = '/contacts/tag/' + tags;
+        if(search) window.location.href = '/contacts/search/' + search;
         
         event.preventDefault();
         return false;

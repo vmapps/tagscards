@@ -2,11 +2,13 @@
 {% block content %}
 
 <form class="form col-md-6 offset-3" id="contacts_form" method="post">
-    {% if contact.id %}
-        <h4 class="p-4">edit contact</h4>
-    {% else %}
-        <h4 class="p-4">add contact</h4>
-    {% endif %}
+    <div class="p-4">
+        {% if contact.id %}
+            <h2><i class="far fa-address-card pr-3"></i> edit contact</h2>
+        {% else %}
+            <h2><i class="far fa-address-card pr-3"></i> add contact</h2>
+        {% endif %}
+    </div>
     <div class="form-group row">
         <label for="contact_fullname" class="col-sm-2 col-form-label-sm">First name</label>
         <div class="col-sm-10">
@@ -50,12 +52,17 @@
             <small id="emailHelp" class="form-text text-muted">type new tag or choose one from autocompletion, and separate them with commas.</small>
         </div>
     </div>
-    {% if contact.id %}
-        <input type="hidden" name="contact_id" value="{{ contact.id }}">
-        <button type="submit" class="btn btn-warning btn-sm">update contact</button>
-    {% else %}
-        <button type="submit" class="btn btn-primary btn-sm">add contact</button>
-    {% endif %}
+    <div class="form-group row">
+        <label for="contact_tags" class="col-sm-2 col-form-label-sm"></label>
+        <div class="col-sm-10">
+            {% if contact.id %}
+                <input type="hidden" name="contact_id" value="{{ contact.id }}">
+                <button type="submit" class="btn btn-warning btn-sm btn-block"><i class="fas fa-database"></i> update contact</button>
+            {% else %}
+               <button type="submit" class="btn btn-primary btn-sm btn-block"><i class="fas fa-database"></i> add contact</button>
+            {% endif %}
+        </div>
+    </div>
 </form>
 
 {% endblock %}

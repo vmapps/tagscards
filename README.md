@@ -56,10 +56,11 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 - ~~add website field~~
 - ~~add sort asc/desc on fields~~
 - ~~add icons support~~
-- full text search support
+- ~~fields text search support~~
+- manage pagination
 - permissions to add/edit/delete records
-- synrtax check when editing fields
-- pretty nice things to promote tags
+- syntax check when editing fields
+- pretty nice things to enhace interface
 - export to vCards
 - export for bulk mode
 - ...

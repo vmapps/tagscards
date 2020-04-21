@@ -76,10 +76,25 @@ def contacts_tag(id):
     lid = id.lower().split(',')
 
     vsort = get_sort()
-    
     info = get_info(id)
     res = r.table('contacts').filter(lambda c:
         c["tags"].contains( r.args(lid) )
+    ).order_by(vsort).run()
+
+    return render_template('contacts_list.html',contacts=res,info=info)
+
+@app.route('/contacts/search/<id>')
+def contacts_search(id):
+    id = id.lower()
+    lid = id.split(',')
+
+    vsort = get_sort()    
+    info = get_info(id)
+
+    res = r.table('contacts').filter(lambda c:
+        c["tags"].contains( r.args(lid) )
+        | c["fullname"].downcase().match(id)
+        | c["position"].downcase().match(id)
     ).order_by(vsort).run()
 
     return render_template('contacts_list.html',contacts=res,info=info)
@@ -97,7 +112,7 @@ def contacts_add():
         contact['phone'] = data['contact_phone']
         contact['website'] = data['contact_website']
         if( data['contact_tags'] ):
-            contact['tags'] = data['contact_tags'].split(',')
+            contact['tags'] = data['contact_tags'].lower().split(',')
         else:
             contact['tags'] = []
 
@@ -121,7 +136,7 @@ def contacts_mod(id):
         contact['phone'] = data['contact_phone']
         contact['website'] = data['contact_website']
         if( data['contact_tags'] ):
-            contact['tags'] = data['contact_tags'].split(',')
+            contact['tags'] = data['contact_tags'].lower().split(',')
         else:
             contact['tags'] = []
 

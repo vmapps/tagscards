@@ -1,11 +1,12 @@
 <div class="card">
     <div class="card-body">
         <form id="search_form"> 
-            <div class="input-group mb-3">
-                <input id="search_input" type="text" class="form-control" placeholder="search for tags ... (ex: 'london' or 'london,legal')" aria-label="search for tags ...">
-                <div class="input-group-append">
-                  <button id="search_button" class="btn btn-outline-secondary" type="submit">Search</button>
+            <div class="mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input id="search_input" type="text" class="form-control form-control-sm w-50" placeholder="type keywords ..." aria-label="search for tags ...">
                 </div>
+                <i><small class="form-text text-muted">Search for text in fullname and position, but also for tags (ex: "london" or "london,marketing").</small></i>
             </div>
         </form>
         {% if info %}
