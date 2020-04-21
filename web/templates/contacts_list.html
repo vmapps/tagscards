@@ -64,8 +64,10 @@
                 {% endif %}
             </td>
             <td>
-                <a href="{{ url_for('contacts_mod',id=c.id) }}" class="btn btn-warning btn-sm text-white"><i class="fas fa-pen"></i></a>
-                <a href="{{ url_for('contacts_del',id=c.id) }}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                <form action="{{ url_for('contacts_del',id=c.id) }}">
+                    <a href="{{ url_for('contacts_mod',id=c.id) }}" class="btn btn-warning btn-sm text-white"><i class="fas fa-pen"></i></a>
+                    <button type="submit" class="contact_del_btn btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                </form>
             </td>
         </tr>
         {% endfor %}

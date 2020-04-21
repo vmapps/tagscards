@@ -17,6 +17,7 @@ function confirmDialog(message,handler) {
 
     $("#confirmModal").modal( {backdrop:'static',keyboard:false} );     
     $("#confirmModal").on('hidden.bs.modal', function() { $("#confirmModal").remove(); });
+
     $(".btn-yes").click( function() { handler(true); $("#confirmModal").modal("hide"); });
     $(".btn-no").click( function() { handler(false); $("#confirmModal").modal("hide"); });
 }
@@ -24,17 +25,18 @@ function confirmDialog(message,handler) {
 // jQuery ready
 $( document ).ready(function() {
 
+    // run search query
     $('#search_form').submit( function(event){
+        event.preventDefault();
         // remove spaces, trailing commas and convert to lowercase
         // var search = $('#search_input').val().replace(/ /g,'').replace(/\,$/,'').toLowerCase();
         var search = $('#search_input').val().toLowerCase();
 
-        if(search) window.location.href = '/contacts/search/' + search;
-        
-        event.preventDefault();
+        if(search) window.location.href = '/contacts/search/' + search;        
         return false;
     });
 
+    // run autocompletion on tag input
     if( $('#contact_tags').length ) {
         // https://github.com/amsify42/jquery.amsify.suggestags#suggestions-through-ajax
         $.getJSON( '/ajax/tags', function(data) {
@@ -45,14 +47,12 @@ $( document ).ready(function() {
         });
     }
 
-    if( $('#test').length ) {
-        $('#test').click( function(){
+    // run confirmation modal
+    if( $('.contact_del_btn').length ) {
+        $('.contact_del_btn').click( function(event){
+            event.preventDefault();
             confirmDialog('are you sure ?', (ans) => {
-                if (ans) {
-                   console.log("yes");
-                } else {
-                   console.log("no");
-                }
+                if(ans) event.currentTarget.form.submit();
             });
         });
     }
