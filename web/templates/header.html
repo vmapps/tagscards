@@ -4,6 +4,17 @@
         <h1 class="display-12">
             {{ config.APP_NAME }}
         </h1>
+        <ul class="nav nav-pills justify-content-end">
+            <li class="nav-item m-1">
+                <a class="nav-link btn btn-sm btn-info" href="{{ url_for('help') }}"><i class="far fa-question-circle"></i> help</a>
+            </li>
+            <li class="nav-item m-1">
+              <a class="nav-link btn btn-sm btn-secondary" href="{{ url_for('export_json') }}"><i class="fas fa-file-download"></i> export</a>
+            </li>
+            <li class="nav-item m-1">
+                <a class="nav-link btn btn-sm btn-secondary" href="{{ url_for('export_json') }}"><i class="fas fa-sign-in-alt"></i> login</a>
+            </li>
+        </ul>
         <p class="lead">{{ config.APP_TITLE }}</p>
     </div>
 </div>

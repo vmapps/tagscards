@@ -7,6 +7,7 @@ import re, time
 import hashlib
 import urllib
 import json
+import datetime
 
 from flask import render_template, flash, request, redirect, session, url_for, jsonify
 from json import dumps
@@ -69,7 +70,7 @@ def contacts_all():
     info = get_info()
     res = r.table('contacts').order_by(vsort).run()
 
-    return render_template('contacts_list.html',contacts=res,info=info)
+    return render_template('contacts/list.html',contacts=res,info=info)
 
 @app.route('/contacts/tag/<id>')
 def contacts_tag(id):
@@ -81,7 +82,7 @@ def contacts_tag(id):
         c["tags"].contains( r.args(lid) )
     ).order_by(vsort).run()
 
-    return render_template('contacts_list.html',contacts=res,info=info)
+    return render_template('contacts/list.html',contacts=res,info=info)
 
 @app.route('/contacts/search/<id>')
 def contacts_search(id):
@@ -97,7 +98,7 @@ def contacts_search(id):
         | c["position"].downcase().match(id)
     ).order_by(vsort).run()
 
-    return render_template('contacts_list.html',contacts=res,info=info)
+    return render_template('contacts/list.html',contacts=res,info=info)
 
 @app.route('/contacts/add',methods=['POST','GET'])
 def contacts_add():
@@ -121,7 +122,7 @@ def contacts_add():
             return redirect(url_for('contacts_all'))
 
     info = get_info()
-    return render_template('contacts_edit.html',contact={},info=info)
+    return render_template('contacts/edit.html',contact={},info=info)
 
 @app.route('/contacts/mod/<id>',methods=['POST','GET'])
 def contacts_mod(id):
@@ -147,7 +148,7 @@ def contacts_mod(id):
     
     info = get_info()
     res = r.table('contacts').get(id).run()
-    return render_template('contacts_edit.html',contact=res,info=info)
+    return render_template('contacts/edit.html',contact=res,info=info)
 
 @app.route('/contacts/del/<id>',methods=['GET'])
 def contacts_del(id):
@@ -157,12 +158,30 @@ def contacts_del(id):
 
     return redirect(url_for('contacts_all'))
   
-@app.route('/ajax/tags')
-def ajax_tags():
+@app.route('/export/tags')
+def export_tags():
     info = get_info()
 
     k = info['tags'].keys()
     return json.dumps( {"tags":list(k)} )
+
+@app.route('/export/contacts')
+def export_json():
+    res = r.table('contacts').run()
+
+    filename = '"contacts-%s.json"' % datetime.date.today()
+    return( jsonify( list(res) ), 
+            200, 
+            {
+                'ContentType':'application/octet-stream',
+                'Content-Disposition': 'attachment; filename=' + filename
+            }
+    ) 
+
+@app.route('/help')
+def help():
+
+    return render_template('help.html')
 
 #----------------------------------------------------
 # HOME
