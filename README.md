@@ -57,6 +57,7 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 - ~~add sort asc/desc on fields~~
 - ~~add icons support~~
 - ~~fields text search support~~
+- ~~login/logout functions~~
 - manage pagination
 - permissions to add/edit/delete records
 - syntax check when editing fields

@@ -16,15 +16,7 @@ from rethinkdb import r
 from collections import defaultdict
 
 from web import app
-from web.decorators import logged, isadmin
-
-# --------------------------------------------------------
-# SPECIFIC ROUTE HANDLER FOR STATIC CONTENT
-# important hack to work both on WSGI and standalone mode
-# --------------------------------------------------------
-@app.route('/static/<path:path>')
-def static_file(path):
-    return app.send_static_file(path)
+from web.decorators import login_required, isadmin
 
 # --------------------------------------------------------
 # MISC
@@ -61,7 +53,7 @@ def get_sort():
     return('')
 
 # --------------------------------------------------------
-# ROUTES
+# CONTACTS
 # --------------------------------------------------------
 @app.route('/contacts')
 def contacts_all():
@@ -72,6 +64,9 @@ def contacts_all():
 
     return render_template('contacts/list.html',contacts=res,info=info)
 
+# --------------------------------------------------------
+# CONTACTS - TAG
+# --------------------------------------------------------
 @app.route('/contacts/tag/<id>')
 def contacts_tag(id):
     lid = id.lower().split(',')
@@ -84,6 +79,9 @@ def contacts_tag(id):
 
     return render_template('contacts/list.html',contacts=res,info=info)
 
+# --------------------------------------------------------
+# CONTACTS - SEARCH
+# --------------------------------------------------------
 @app.route('/contacts/search/<id>')
 def contacts_search(id):
     id = id.lower()
@@ -100,7 +98,11 @@ def contacts_search(id):
 
     return render_template('contacts/list.html',contacts=res,info=info)
 
+# --------------------------------------------------------
+# CONTACTS - ADD
+# --------------------------------------------------------
 @app.route('/contacts/add',methods=['POST','GET'])
+@login_required
 def contacts_add():
     if( request.method=='POST' ):
         data = request.form
@@ -124,7 +126,11 @@ def contacts_add():
     info = get_info()
     return render_template('contacts/edit.html',contact={},info=info)
 
+# --------------------------------------------------------
+# CONTACTS - MOD
+# --------------------------------------------------------
 @app.route('/contacts/mod/<id>',methods=['POST','GET'])
+@login_required
 def contacts_mod(id):
     if( request.method=='POST' ):
         data = request.form
@@ -150,42 +156,14 @@ def contacts_mod(id):
     res = r.table('contacts').get(id).run()
     return render_template('contacts/edit.html',contact=res,info=info)
 
+# --------------------------------------------------------
+# CONTACTS - DEL
+# --------------------------------------------------------
 @app.route('/contacts/del/<id>',methods=['GET'])
+@login_required
 def contacts_del(id):
     res = r.table('contacts').get(id).delete().run()
     if( not res['errors'] ):
         return redirect(url_for('contacts_all'))
 
     return redirect(url_for('contacts_all'))
-  
-@app.route('/export/tags')
-def export_tags():
-    info = get_info()
-
-    k = info['tags'].keys()
-    return json.dumps( {"tags":list(k)} )
-
-@app.route('/export/contacts')
-def export_json():
-    res = r.table('contacts').run()
-
-    filename = '"contacts-%s.json"' % datetime.date.today()
-    return( jsonify( list(res) ), 
-            200, 
-            {
-                'ContentType':'application/octet-stream',
-                'Content-Disposition': 'attachment; filename=' + filename
-            }
-    ) 
-
-@app.route('/help')
-def help():
-
-    return render_template('help.html')
-
-#----------------------------------------------------
-# HOME
-# --------------------------------------------------------
-@app.route('/')
-def index():
-    return render_template('index.html')

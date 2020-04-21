@@ -27,7 +27,9 @@
             <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Web</th>
             <th scope="col">Tags</th>
+            {% if session['logged'] %}
             <th scope="col">Actions</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -63,18 +65,24 @@
                     {% endfor %}
                 {% endif %}
             </td>
+            {% if session['logged'] %}
             <td>
                 <form action="{{ url_for('contacts_del',id=c.id) }}">
                     <a href="{{ url_for('contacts_mod',id=c.id) }}" class="btn btn-warning btn-sm text-white"><i class="fas fa-pen"></i></a>
                     <button type="submit" class="contact_del_btn btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                 </form>
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
+
+        {% if session['logged'] %}
         <tr class="small">
             <td colspan=8></td>
             <td><a href="{{ url_for('contacts_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i></a></td>
         </tr>
+        {% endif %}
+
     </tbody>
     </table>
 </div> 

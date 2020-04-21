@@ -10,21 +10,20 @@ from functools import wraps
 # --------------------------------------------------------
 # DECORATORS
 # --------------------------------------------------------
-def logged(f):
+def login_required(f):
 	@wraps(f)
 	def wrapped(*args, **kwargs):
 		if not session.get('logged'):
 			# Default TLP for non logged users
-			session['tlp']=1
 			session['role']='guest'
-			#return redirect('/login')
-			return f(*args, **kwargs)
+			return redirect(url_for('admin_login'))
+		return f(*args, **kwargs)
 	return wrapped
 
 def isadmin(f):
 	@wraps(f)
 	def wrapped(*args, **kwargs):
 		if not session['role']=='admin':
-			return redirect(url_for('prod.index'))
+			return redirect(url_for('index'))
 		return f(*args, **kwargs)
 	return wrapped
