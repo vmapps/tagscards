@@ -10,46 +10,53 @@
         {% endif %}
     </div>
     <div class="form-group row">
-        <label for="contact_fullname" class="col-sm-2 col-form-label-sm">First name</label>
-        <div class="col-sm-10">
+        <label for="contact_fullname" class="col-sm-2 col-form-label-sm">Full name</label>
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="far fa-address-card"></i></span>
             <input type="text" class="form-control form-control-sm" name="contact_fullname" value="{{ contact.fullname }}" placeholder="enter full name">
         </div>
     </div>
     <div class="form-group row">
         <label for="contact_position" class="col-sm-2 col-form-label-sm">Position</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-sitemap"></i></span>
             <input type="text" class="form-control form-control-sm" name="contact_position" value="{{ contact.position }}" placeholder="enter position">
         </div>
     </div>
     <div class="form-group row">
         <label for="contact_email" class="col-sm-2 col-form-label-sm">Email</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="far fa-envelope"></i></span>
             <input type="email" class="form-control form-control-sm" name="contact_email" value="{{ contact.email }}" placeholder="enter email address">
         </div>
     </div>
     <div class="form-group row">
         <label for="contact_pgp" class="col-sm-2 col-form-label-sm">PGP</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
             <input type="pgp" class="form-control form-control-sm" name="contact_pgp" value="{{ contact.pgp }}" placeholder="enter PGP key">
         </div>
     </div>
     <div class="form-group row">
         <label for="contact_phone" class="col-sm-2 col-form-label-sm">Phone</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
             <input type="text" class="form-control form-control-sm" name="contact_phone" value="{{ contact.phone }}" placeholder="enter phone number">
         </div> 
     </div>
     <div class="form-group row">
         <label for="contact_website" class="col-sm-2 col-form-label-sm">Website</label>
-        <div class="col-sm-10">
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-link"></i></span>
             <input type="text" class="form-control form-control-sm" name="contact_website" value="{{ contact.website }}" placeholder="enter website">
         </div> 
     </div>
     <div class="form-group row">
         <label for="contact_tags" class="col-sm-2 col-form-label-sm">Tags</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="contact_tags" id="contact_tags" value="{{ contact.tags|join(',') }}" placeholder="enter tag ...">
-            <small id="emailHelp" class="form-text text-muted">type new tag or choose one from autocompletion, and separate them with commas.</small>
+        <div class="col-sm-10 input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-tags"></i></span>
+            <input type="text" class="form-control" name="contact_tags" id="contact_tags" value="{{ contact.tags|join(',') }}" placeholder="enter tags ...">
+            <!-- <small id="emailHelp" class="form-text text-muted">type new tag or choose one from autocompletion, and separate them with commas.</small> -->
         </div>
     </div>
     <div class="form-group row">

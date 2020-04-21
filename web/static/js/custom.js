@@ -42,7 +42,8 @@ $( document ).ready(function() {
         $.getJSON( '/ajax/tags', function(data) {
             $('input[name="contact_tags"]').amsifySuggestags({
                 // showAllSuggestions: true,
-                suggestions: data['tags']
+                suggestions: data['tags'],
+                defaultTagClass: 'btn-sm',
             },'refresh');
         });
     }
