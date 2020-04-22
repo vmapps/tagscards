@@ -1,4 +1,14 @@
+
+// --------------------------------------------------------
+// Globals
+// --------------------------------------------------------
+
+var exportpath = '/export';
+
+// --------------------------------------------------------
+// CONFIRM DIALOG
 // https://learnersbucket.com/examples/bootstrap4/custom-confirm-box-with-bootstrap/
+// --------------------------------------------------------
 function confirmDialog(message,handler) {
 
     $(`<div class="modal" tabindex="-1" role="dialog" id="confirmModal">
@@ -22,7 +32,9 @@ function confirmDialog(message,handler) {
     $(".btn-no").click( function() { handler(false); $("#confirmModal").modal("hide"); });
 }
 
-// jQuery ready
+// --------------------------------------------------------
+// JQUERY READY
+// --------------------------------------------------------
 $( document ).ready(function() {
 
     // run search query
@@ -39,7 +51,7 @@ $( document ).ready(function() {
     // run autocompletion on tag input
     if( $('#contact_tags').length ) {
         // https://github.com/amsify42/jquery.amsify.suggestags#suggestions-through-ajax
-        $.getJSON( '/ajax/tags', function(data) {
+        $.getJSON( exportpath + '/tags', function(data) {
             $('input[name="contact_tags"]').amsifySuggestags({
                 // showAllSuggestions: true,
                 suggestions: data['tags'],
@@ -58,4 +70,13 @@ $( document ).ready(function() {
         });
     }
 
+    if( $('.vcard_btn').length ) {
+        $('.vcard_btn').click( function(event){
+            event.preventDefault();
+            $.ajax({
+                url: exportpath + '/vcard' + $(this).attr("data-id"),
+                success: function(result){
+            }});
+        });
+    }
 });

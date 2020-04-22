@@ -35,7 +35,7 @@
     <tbody>
         {% for c in contacts %}
         <tr class="small">
-            <th scope="row"><span class="badge badge-light">{{ loop.index }}</span></th>
+            <th scope="row"><a href="#" class="vcard_btn" data-id="{{ c.id }}"><i class="far fa-address-card"></i></a></th>
             <td>{{ c.fullname }}</td>
             <td>{{ c.role }}</td>
             <td>
