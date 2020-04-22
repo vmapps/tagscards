@@ -77,6 +77,7 @@ $ ./manage.py --thread
 - Tags input with auto-completion
 - Admin user authentication
 - Sorting on columns
+- vCard export
 
 ## Todo list
 - ~~bootstrap 4 integration~~
@@ -91,11 +92,11 @@ $ ./manage.py --thread
 - ~~fields text search support~~
 - ~~login/logout functions~~
 - ~~add session timeout~~
+- ~~export as vCard format~~
 - manage pagination
 - permissions to add/edit/delete records
 - syntax check when editing fields
 - pretty nice things to enhace interface
-- export to vCards
 - export for bulk mode
 - ...
 

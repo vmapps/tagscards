@@ -73,10 +73,14 @@ $( document ).ready(function() {
     if( $('.vcard_btn').length ) {
         $('.vcard_btn').click( function(event){
             event.preventDefault();
-            $.ajax({
-                url: exportpath + '/vcard' + $(this).attr("data-id"),
-                success: function(result){
-            }});
+            window.location.href = exportpath + '/vcard/' + $(this).attr("data-id"); 
+            // $.ajax({
+            //     url: exportpath + '/vcard/' + $(this).attr("data-id"),
+            //     contentType: "text/directory",
+
+            //     success: function(data){
+            //         console.log(data);
+            // }});
         });
     }
 });
