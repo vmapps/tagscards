@@ -61,7 +61,7 @@
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}
-                        <a href="{{ url_for('contacts_tag',id=t) }}" class="btn btn-outline-primary btn-sm">{{ t }}</a>
+                        <a href="{{ url_for('contacts_tag',id=t) }}" class="btn btn-outline-primary btn-xs">{{ t }}</a>
                     {% endfor %}
                 {% endif %}
             </td>
