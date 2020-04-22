@@ -77,7 +77,7 @@ $ ./manage.py --thread
 - Tags input with auto-completion
 - Admin user authentication
 - Sorting on columns
-- vCard export
+- Export as vCard
 
 ## Todo list
 - ~~bootstrap 4 integration~~
