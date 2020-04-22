@@ -46,6 +46,12 @@ RETHINKDB_PORT = 28015
 RETHINKDB_BASE = 'test'# enable/disable debug mode
 ...
 ```
+## Some features
+- Bootstrap 4 reqdy
+- Tags input with auto-completion
+- Admin user authentication
+- Sorting on columns
+
 ## Todo list
 - ~~bootstrap 4 integration~~
 - ~~autocompletion for tags input~~
@@ -58,6 +64,7 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 - ~~add icons support~~
 - ~~fields text search support~~
 - ~~login/logout functions~~
+- ~~add session timeout~~
 - manage pagination
 - permissions to add/edit/delete records
 - syntax check when editing fields
@@ -70,3 +77,4 @@ RETHINKDB_BASE = 'test'# enable/disable debug mode
 ![tagscards1](samples/tagscards1.png)
 ![tagscards2](samples/tagscards2.png)
 ![tagscards3](samples/tagscards3.png)
+![tagscards4](samples/tagscards4.png)

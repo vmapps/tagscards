@@ -21,7 +21,7 @@
         <tr class="small">
             <th scope="col">#</th>
             <th scope="col">Full name <a href="{{ urlsort }}fullname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
-            <th scope="col">Position <a href="{{ urlsort }}position" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
+            <th scope="col">Role <a href="{{ urlsort }}role" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Email <a href="{{ urlsort }}email" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">PGP <a href="{{ urlsort }}pgp" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
@@ -37,7 +37,7 @@
         <tr class="small">
             <th scope="row"><span class="badge badge-light">{{ loop.index }}</span></th>
             <td>{{ c.fullname }}</td>
-            <td>{{ c.position }}</td>
+            <td>{{ c.role }}</td>
             <td>
                 {% if c.email|length %}
                     <a href="mailto:{{ c.email }}" class="text-dark">{{ c.email }}</a>

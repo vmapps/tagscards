@@ -10,6 +10,7 @@ import json
 import datetime
 
 from flask import render_template, flash, request, redirect, session, url_for, jsonify
+from werkzeug.security import check_password_hash
 from json import dumps
 from pprint import pprint, pformat
 from rethinkdb import r
@@ -31,11 +32,11 @@ def admin_login():
         data = request.form
 
         res = r.table('users').filter({
-            'username': data['admin_username'],
-            'password': data['admin_password']
-        }).count().run()
+            'username': data['admin_username']
+        }).run()
 
-        if( res==1 ):
+        res = list(res)
+        if( len(res)==1 and check_password_hash(res[0]['password'],data['admin_password']) ):
             session['logged'] = True
             session['username'] = data['admin_username']
             return redirect(url_for('index'))

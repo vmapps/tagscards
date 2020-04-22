@@ -17,40 +17,7 @@ from collections import defaultdict
 
 from web import app
 from web.decorators import login_required, isadmin
-
-# --------------------------------------------------------
-# MISC
-# --------------------------------------------------------
-def get_info(key=''):
-    res = r.table('contacts').pluck('tags').run()
-    tot = r.table('contacts').count().run()
-
-    tags = defaultdict(int)
-    for c in res:
-        for t in c['tags']:
-            tags[t] += 1
-
-    # for key,val in tags.items():
-    #     print( "%s : %d" % (key,val) )
-    # return (tot,tags)
-    info = {}
-    info['records'] = tot
-    info['key'] = key.split(',')
-    info['tags'] = tags
-
-    return( info )
-
-def get_sort():
-    vsort = request.args.get('sort')
-
-    if( vsort==None ): 
-        return( 'fullname' )
-    elif( vsort[0]=='A' ):
-        return( r.asc(vsort[1:]) )
-    elif( vsort[0]=='D' ):
-        return( r.desc(vsort[1:]) )
-
-    return('')
+from web.utils import get_info, get_sort
 
 # --------------------------------------------------------
 # CONTACTS
@@ -93,7 +60,7 @@ def contacts_search(id):
     res = r.table('contacts').filter(lambda c:
         c["tags"].contains( r.args(lid) )
         | c["fullname"].downcase().match(id)
-        | c["position"].downcase().match(id)
+        | c["role"].downcase().match(id)
     ).order_by(vsort).run()
 
     return render_template('contacts/list.html',contacts=res,info=info)
@@ -109,7 +76,7 @@ def contacts_add():
 
         contact = {}
         contact['fullname'] = data['contact_fullname']
-        contact['position'] = data['contact_position']
+        contact['role'] = data['contact_role']
         contact['email'] = data['contact_email']
         contact['pgp'] = data['contact_pgp']
         contact['phone'] = data['contact_phone']
@@ -137,7 +104,7 @@ def contacts_mod(id):
 
         contact = {}
         contact['fullname'] = data['contact_fullname']
-        contact['position'] = data['contact_position']
+        contact['role'] = data['contact_role']
         contact['email'] = data['contact_email']
         contact['pgp'] = data['contact_pgp']
         contact['phone'] = data['contact_phone']

@@ -1,10 +1,12 @@
 # --------------------------------------------------------
 # IMPORTS
 # --------------------------------------------------------
-from flask import Flask, g, render_template, redirect, url_for
+from flask import Flask, g, session, render_template, redirect, url_for
 from jinja2 import nodes
 from jinja2.ext import Extension
 from rethinkdb import r
+from datetime import timedelta
+
 # --------------------------------------------------------
 # LAUNCH APP
 # --------------------------------------------------------
@@ -24,7 +26,11 @@ from web.views import export
 # DATABASE UTILS
 # --------------------------------------------------------
 @app.before_request
-def db_get():
+def before_request():
+    # set session timeout
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta( minutes=app.config['SESSION_TIMEOUT'] )
+    # get global db handler
     if not hasattr(g,'rethinkdb'):
         g.rethinkdb = r.connect( \
             host=app.config['RETHINKDB_HOST'], \
@@ -33,7 +39,8 @@ def db_get():
         ).repl()
 
 @app.teardown_appcontext
-def db_close(error):
+def teardown_appcontext(error):
+    # close db
     if hasattr(g,'rethinkdb'):
         g.rethinkdb.close()
 

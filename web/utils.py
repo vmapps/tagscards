@@ -17,30 +17,41 @@ from collections import defaultdict
 
 from web import app
 from web.decorators import login_required, isadmin
-from web.utils import get_info, get_sort
 
 # --------------------------------------------------------
-# EXPORT - TAGS
+# GET INFO
 # --------------------------------------------------------
-@app.route('/export/tags')
-def export_tags():
-    info = get_info()
+def get_info(key=''):
+    res = r.table('contacts').pluck('tags').run()
+    tot = r.table('contacts').count().run()
 
-    k = info['tags'].keys()
-    return json.dumps( {"tags":list(k)} )
+    tags = defaultdict(int)
+    for c in res:
+        for t in c['tags']:
+            tags[t] += 1
+
+    # for key,val in tags.items():
+    #     print( "%s : %d" % (key,val) )
+    # return (tot,tags)
+    info = {}
+    info['records'] = tot
+    info['key'] = key.split(',')
+    info['tags'] = tags
+
+    return( info )
 
 # --------------------------------------------------------
-# EXPORT - CONTACTS
+# GET SORT
 # --------------------------------------------------------
-@app.route('/export/contacts')
-def export_json():
-    res = r.table('contacts').run()
 
-    filename = '"contacts-%s.json"' % datetime.date.today()
-    return( jsonify( list(res) ), 
-            200, 
-            {
-                'ContentType':'application/octet-stream',
-                'Content-Disposition': 'attachment; filename=' + filename
-            }
-    ) 
+def get_sort():
+    vsort = request.args.get('sort')
+
+    if( vsort==None ): 
+        return( 'fullname' )
+    elif( vsort[0]=='A' ):
+        return( r.asc(vsort[1:]) )
+    elif( vsort[0]=='D' ):
+        return( r.desc(vsort[1:]) )
+
+    return('')
