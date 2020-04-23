@@ -77,8 +77,8 @@ $ ./manage.py --thread
 Contacts can be imported from CSV file:
 - CSV file must contain one contact per line
 - Each line must contain fields must be separated with semicolons
-- Required fields are "fullname;role;email;pgp;phone;website;tags"
-- Tags must be separated with commas "tag1,tag2,tag3"
+- Required fields are `fullname;role;email;pgp;phone;website;tags`
+- Tags must be separated with commas `tag1,tag2,tag3`
 ```
 Joe Smith;Unix Administrator;john.smith@company.com;0x12345678;11-22-33-44;http://github.com/;unix,admin
 John Doe;Security Analyst;john.doe@company.com;0x12ABCDEF;55-66-77-88;http://github.com/;security,analyst
