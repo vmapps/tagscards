@@ -107,3 +107,4 @@ $ ./manage.py --thread
 ![tagscards2](samples/tagscards2.png)
 ![tagscards3](samples/tagscards3.png)
 ![tagscards4](samples/tagscards4.png)
+![tagscards5](samples/tagscards5.png)
