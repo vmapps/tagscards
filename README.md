@@ -80,9 +80,9 @@ Contacts can be imported from CSV file:
 - Required fields are "fullname;role;email;pgp;phone;website;tags"
 - Tags must be separated with commas "tag1,tag2,tag3"
 ```
-Joe Smith;Unix Administrator;john.smith@company.com;0x12345678;+1 800-77-66-55;http://www.company.com/;unix,admin,company
-John Doe;Security Analyst;john.doe@company.com;0x12ABCDEF;+1 800-77-66-44;http://www.company.com/;security,analyst,company
-Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;+1 800-77-66-33;http://www.company.com/;windows,admin,company
+Joe Smith;Unix Administrator;john.smith@company.com;0x12345678;11-22-33-44;http://github.com/;unix,admin
+John Doe;Security Analyst;john.doe@company.com;0x12ABCDEF;55-66-77-88;http://github.com/;security,analyst
+Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://github.com/;windows,admin
 ```
 ## Some features
 - Bootstrap 4 reqdy
