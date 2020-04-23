@@ -44,6 +44,7 @@ r.db('<your_database_name>).tableCreate('users')
 
 r.db('<your_database_name>).table('users').insert({
        username: 'admin', 
+       email: '<your_email>',
        password: '<your_hashed_password'
 })
 ```
@@ -78,6 +79,7 @@ $ ./manage.py --thread
 - Admin user authentication
 - Sorting on columns
 - Export as vCard
+- Users management
 
 ## Todo list
 - ~~bootstrap 4 integration~~
@@ -93,8 +95,8 @@ $ ./manage.py --thread
 - ~~login/logout functions~~
 - ~~add session timeout~~
 - ~~export as vCard format~~
+- ~~add users management~~
 - manage pagination
-- permissions to add/edit/delete records
 - syntax check when editing fields
 - pretty nice things to enhace interface
 - export for bulk mode

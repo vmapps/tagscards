@@ -53,3 +53,4 @@ def admin_logout():
     session.clear()
 
     return redirect(url_for('index'))
+

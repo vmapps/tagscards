@@ -23,7 +23,7 @@ from web.utils import get_info, get_sort
 # CONTACTS
 # --------------------------------------------------------
 @app.route('/contacts')
-def contacts_all():
+def contacts_list():
     vsort = get_sort()
 
     info = get_info()
@@ -86,9 +86,9 @@ def contacts_add():
         else:
             contact['tags'] = []
 
-        res = r.db('test').table('contacts').insert(contact).run()
+        res = r.table('contacts').insert(contact).run()
         if( not res['errors'] ):
-            return redirect(url_for('contacts_all'))
+            return redirect(url_for('contacts_list'))
 
     info = get_info()
     return render_template('contacts/edit.html',contact={},info=info)
@@ -117,7 +117,7 @@ def contacts_mod(id):
         if( data['contact_id'] ):
             res = r.table('contacts').get(id).update(contact).run()
             if( not res['errors'] ):
-                return redirect(url_for('contacts_all'))
+                return redirect(url_for('contacts_list'))
     
     info = get_info()
     res = r.table('contacts').get(id).run()
@@ -131,6 +131,6 @@ def contacts_mod(id):
 def contacts_del(id):
     res = r.table('contacts').get(id).delete().run()
     if( not res['errors'] ):
-        return redirect(url_for('contacts_all'))
+        return redirect(url_for('contacts_list'))
 
-    return redirect(url_for('contacts_all'))
+    return redirect(url_for('contacts_list'))

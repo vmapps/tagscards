@@ -35,7 +35,7 @@
     <tbody>
         {% for c in contacts %}
         <tr class="small">
-            <th scope="row"><a href="#" class="vcard_btn" data-id="{{ c.id }}"><i class="far fa-address-card"></i></a></th>
+            <th scope="row"><a href="#" class="vcard_btn text-dark" data-id="{{ c.id }}" title="download vCard for '{{ c.fullname }}'"><i class="far fa-address-card"></i></a></th>
             <td>{{ c.fullname }}</td>
             <td>{{ c.role }}</td>
             <td>
@@ -55,13 +55,13 @@
             </td>
             <td>
                 {% if c.website|length %}
-                    <a href="{{ c.website }}" target="_new" class="text-dark"><i class="fas fa-external-link-alt"></i></a>
+                    <a href="{{ c.website }}" target="_new" class="text-dark" title="visite website for '{{ c.fullname }}'"><i class="fas fa-external-link-alt"></i></a>
                 {% endif %}
             </td>
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}
-                        <a href="{{ url_for('contacts_tag',id=t) }}" class="btn btn-outline-primary btn-xs">{{ t }}</a>
+                        <a href="{{ url_for('contacts_tag',id=t) }}" class="btn btn-outline-primary btn-sm">{{ t }}</a>
                     {% endfor %}
                 {% endif %}
             </td>

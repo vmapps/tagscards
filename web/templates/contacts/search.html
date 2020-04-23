@@ -10,7 +10,7 @@
             </div>
         </form>
         {% if info %}
-            <a href="{{ url_for('contacts_all') }}" class="btn btn-outline-info btn-sm m-1">
+            <a href="{{ url_for('contacts_list') }}" class="btn btn-outline-info btn-sm m-1">
                 all records <span class="badge badge-pill badge-info">{{ info.records }}</span>
             </a>
             {% for t in info.tags|dictsort(true) %}

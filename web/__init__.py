@@ -21,6 +21,7 @@ app.jinja_env.add_extension('jinja2.ext.do')
 from web.views import admin
 from web.views import contacts
 from web.views import export
+from web.views import users
 
 # --------------------------------------------------------
 # DATABASE UTILS
@@ -64,7 +65,7 @@ def static_file(path):
 # --------------------------------------------------------
 @app.route('/')
 def index():
-    return redirect(url_for('contacts_all'))
+    return redirect(url_for('contacts_list'))
 
 # --------------------------------------------------------
 # HELP PAGE

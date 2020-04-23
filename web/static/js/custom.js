@@ -64,7 +64,17 @@ $( document ).ready(function() {
     if( $('.contact_del_btn').length ) {
         $('.contact_del_btn').click( function(event){
             event.preventDefault();
-            confirmDialog('are you sure ?', (ans) => {
+            confirmDialog('do you confirm that contact deletion', (ans) => {
+                if(ans) event.currentTarget.form.submit();
+            });
+        });
+    }
+
+    // run confirmation modal
+    if( $('.user_del_btn').length ) {
+        $('.user_del_btn').click( function(event){
+            event.preventDefault();
+            confirmDialog('do you confirm that user deletion ?', (ans) => {
                 if(ans) event.currentTarget.form.submit();
             });
         });

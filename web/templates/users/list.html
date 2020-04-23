@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>&nbsp;</p>
+
+<div class="table-responsive col-md-8 offset-2">
+    <table class="table table-hover table-sm">
+    <thead class="thead-dark">
+        <tr class="small">
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</a></th>
+            <th scope="col">Password</a></th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users %}
+        <tr class="small">
+            <th scope="row">{{ loop.index }}</th>
+            <td>{{ u.username }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.password }}</td>
+            <td>
+                <form action="{{ url_for('users_del',id=u.id) }}">
+                    <a href="{{ url_for('users_mod',id=u.id) }}" class="btn btn-warning btn-sm text-white"><i class="fas fa-pen"></i></a>
+                    <button type="submit" class="user_del_btn btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+
+        <tr class="small">
+            <td colspan=4></td>
+            <td><a href="{{ url_for('users_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i></a></td>
+        </tr>
+
+    </tbody>
+    </table>
+</div> 
+
+{% endblock %}
