@@ -179,3 +179,4 @@ def contacts_import():
             return redirect(url_for('contacts_list'))
                 
     return render_template('contacts/import.html')
+

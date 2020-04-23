@@ -57,4 +57,3 @@ def admin_logout():
 
     flash('you are now logged out !','success')
     return redirect(url_for('index'))
-
