@@ -33,10 +33,21 @@ def export_tags():
 # EXPORT - CONTACTS
 # --------------------------------------------------------
 @app.route('/export/contacts')
-def export_json():
+def export_contacts():
     res = r.table('contacts').run()
 
     filename = '"contacts-%s.json"' % datetime.date.today()
+    return( jsonify( list(res) ), 200, {
+        'ContentType':'application/json',
+        'Content-Disposition': 'attachment; filename=' + filename
+    }) 
+
+@app.route('/export/users')
+@login_required
+def export_users():
+    res = r.table('users').run()
+
+    filename = '"users-%s.json"' % datetime.date.today()
     return( jsonify( list(res) ), 200, {
         'ContentType':'application/json',
         'Content-Disposition': 'attachment; filename=' + filename

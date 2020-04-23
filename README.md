@@ -96,6 +96,8 @@ $ ./manage.py --thread
 - ~~add session timeout~~
 - ~~export as vCard format~~
 - ~~add users management~~
+- ~~export contacts as JSON file~~
+- ~~export users as JSON file~~
 - manage pagination
 - syntax check when editing fields
 - pretty nice things to enhace interface

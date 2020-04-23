@@ -31,7 +31,8 @@
         {% endfor %}
 
         <tr class="small">
-            <td colspan=4></td>
+            <td><a href="{{ url_for('export_users') }}" class="btn btn-secondary btn-sm" title="export users database"><i class="fas fa-file-download"></i></a></td>
+            <td colspan=3></td>
             <td><a href="{{ url_for('users_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i></a></td>
         </tr>
 
