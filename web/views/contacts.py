@@ -8,12 +8,15 @@ import hashlib
 import urllib
 import json
 import datetime
+import csv
+import codecs
 
 from flask import render_template, flash, request, redirect, session, url_for, jsonify
 from json import dumps
 from pprint import pprint, pformat
 from rethinkdb import r
 from collections import defaultdict
+from werkzeug.utils import secure_filename
 
 from web import app
 from web.decorators import login_required, isadmin
@@ -134,3 +137,34 @@ def contacts_del(id):
         return redirect(url_for('contacts_list'))
 
     return redirect(url_for('contacts_list'))
+
+# --------------------------------------------------------
+# CONTACTS - IMPORT
+# --------------------------------------------------------
+@app.route('/contacts/import',methods=['POST','GET'])
+@login_required
+def contacts_import():
+    if( request.method=='POST' ):
+        csvfile = request.files['import_csvfile']
+        extfile = csvfile.filename.rsplit('.',1)[1].lower()
+
+        if( extfile=='csv' ):
+            stream = codecs.iterdecode(csvfile.stream,'utf-8')
+
+            for row in csv.reader(stream,delimiter=";",dialect=csv.excel):
+                contact = {}
+                contact['fullname'] = row[0]
+                contact['role'] = row[1]
+                contact['email'] = row[2]
+                contact['pgp'] = row[3]
+                contact['phone'] = row[4]
+                contact['website'] = row[5]
+                contact['tags'] = []
+
+                res = r.table('contacts').insert(contact).run()
+                if( not res['errors'] ):
+                    continue
+                
+            return redirect(url_for('contacts_list'))
+                
+    return render_template('contacts/import.html')

@@ -80,6 +80,7 @@ $ ./manage.py --thread
 - Sorting on columns
 - Export as vCard
 - Users management
+- Import from CSV
 
 ## Todo list
 - ~~bootstrap 4 integration~~
@@ -98,6 +99,7 @@ $ ./manage.py --thread
 - ~~add users management~~
 - ~~export contacts as JSON file~~
 - ~~export users as JSON file~~
+- ~~import contacts from CSV file~~
 - manage pagination
 - syntax check when editing fields
 - pretty nice things to enhace interface

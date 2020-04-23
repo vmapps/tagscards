@@ -42,6 +42,9 @@ def export_contacts():
         'Content-Disposition': 'attachment; filename=' + filename
     }) 
 
+# --------------------------------------------------------
+# EXPORT - USERS
+# --------------------------------------------------------
 @app.route('/export/users')
 @login_required
 def export_users():
