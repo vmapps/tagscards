@@ -52,7 +52,10 @@ def users_add():
 
             res = r.table('users').insert(user).run()
             if( not res['errors'] ):
+                flash('new user added !','success')
                 return redirect(url_for('users_list'))
+
+        flash('error when adding new user !','danger')
 
     return render_template('users/edit.html',user={})
 
@@ -80,8 +83,11 @@ def users_mod(id):
                 
             res = r.table('users').get(id).update(user).run()
             if( not res['errors'] ):
+                flash('user updated !','success')
                 return redirect(url_for('users_list'))
     
+        flash('error when updating user !','danger')
+
     res = r.table('users').get(id).run()
     return render_template('users/edit.html',user=res)
 
@@ -93,6 +99,8 @@ def users_mod(id):
 def users_del(id):
     res = r.table('users').get(id).delete().run()
     if( not res['errors'] ):
+        flash('user deleted !','success')
         return redirect(url_for('users_list'))
 
+    flash('error when deleting user !','danger')
     return redirect(url_for('users_list'))

@@ -37,6 +37,9 @@ function confirmDialog(message,handler) {
 // --------------------------------------------------------
 $( document ).ready(function() {
 
+    // flash messages timeout
+    $('#flash-messages').delay(3000).slideUp(300);
+
     // run search query
     $('#search_form').submit( function(event){
         event.preventDefault();

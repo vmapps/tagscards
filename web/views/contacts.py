@@ -91,7 +91,10 @@ def contacts_add():
 
         res = r.table('contacts').insert(contact).run()
         if( not res['errors'] ):
+            flash('new contact added !','success')
             return redirect(url_for('contacts_list'))
+
+        flash('error when adding new contact !','danger')
 
     info = get_info()
     return render_template('contacts/edit.html',contact={},info=info)
@@ -120,8 +123,11 @@ def contacts_mod(id):
         if( data['contact_id'] ):
             res = r.table('contacts').get(id).update(contact).run()
             if( not res['errors'] ):
+                flash('contact updated !','success')
                 return redirect(url_for('contacts_list'))
     
+        flash('error when updating contact !','danger')
+
     info = get_info()
     res = r.table('contacts').get(id).run()
     return render_template('contacts/edit.html',contact=res,info=info)
@@ -134,8 +140,10 @@ def contacts_mod(id):
 def contacts_del(id):
     res = r.table('contacts').get(id).delete().run()
     if( not res['errors'] ):
+        flash('contact deleted !','success')
         return redirect(url_for('contacts_list'))
 
+    flash('error when deleting contact !','danger')
     return redirect(url_for('contacts_list'))
 
 # --------------------------------------------------------

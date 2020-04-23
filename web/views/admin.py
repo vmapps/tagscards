@@ -39,7 +39,10 @@ def admin_login():
         if( len(res)==1 and check_password_hash(res[0]['password'],data['admin_password']) ):
             session['logged'] = True
             session['username'] = data['admin_username']
+            flash('you are now logged in !','success')
             return redirect(url_for('index'))
+
+        flash('error when logging in !','danger')
 
     return render_template('admin/login.html')
 
@@ -52,5 +55,6 @@ def admin_logout():
     session['username'] = None
     session.clear()
 
+    flash('you are now logged out !','success')
     return redirect(url_for('index'))
 

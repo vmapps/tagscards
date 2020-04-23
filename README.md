@@ -111,6 +111,7 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - ~~export contacts as JSON file~~
 - ~~export users as JSON file~~
 - ~~import contacts from CSV file~~
+- ~~manage flask messages~~
 - manage pagination
 - syntax check when editing fields
 - pretty nice things to enhace interface
