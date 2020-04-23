@@ -159,7 +159,10 @@ def contacts_import():
                 contact['pgp'] = row[3]
                 contact['phone'] = row[4]
                 contact['website'] = row[5]
-                contact['tags'] = []
+                if( row[6] ):
+                    contact['tags'] = row[6].lower().split(',')
+                else:
+                    contact['tags'] = []
 
                 res = r.table('contacts').insert(contact).run()
                 if( not res['errors'] ):
