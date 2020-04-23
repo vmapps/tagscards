@@ -125,3 +125,4 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 ![tagscards4](samples/tagscards4.png)
 ![tagscards5](samples/tagscards5.png)
 ![tagscards6](samples/tagscards6.png)
+
