@@ -75,10 +75,10 @@ Options:
        -t, --thread         run in threaded mode (default False)
 
 $ ./manage.py --init
-[1/4] Database "test" created !
-[2/4] Table "contacts" created !
-[3/4] Table "users" created !
-[4/4] User "admin" created !
+[1/4] database "test" created !
+[2/4] table "contacts" created !
+[3/4] table "users" created !
+[4/4] user "admin" created !
 
 $ ./manage.py --thread
 ```
