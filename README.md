@@ -47,7 +47,7 @@ r.db('<your_database_name>).tableCreate('users')
 r.db('<your_database_name>).table('users').insert({
        username: 'admin', 
        email: '<your_email>',
-       password: '<your_hashed_password'
+       password: '<your_hashed_password>'
 })
 ```
 ## Configuration
@@ -121,6 +121,7 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - [x] ~~export users as JSON file~~
 - [x] ~~import contacts from CSV file~~
 - [x] ~~manage flask messages~~
+- [x] ~~add fields for notes (reserved to admin)~~
 - [ ] manage pagination
 - [ ] syntax check when editing fields
 - [ ] pretty nice things to enhace interface

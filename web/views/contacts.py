@@ -88,6 +88,7 @@ def contacts_add():
             contact['tags'] = data['contact_tags'].lower().split(',')
         else:
             contact['tags'] = []
+        contact['notes'] = data['contact_notes']
 
         res = r.table('contacts').insert(contact).run()
         if( not res['errors'] ):
@@ -119,6 +120,7 @@ def contacts_mod(id):
             contact['tags'] = data['contact_tags'].lower().split(',')
         else:
             contact['tags'] = []
+        contact['notes'] = data['contact_notes']
 
         if( data['contact_id'] ):
             res = r.table('contacts').get(id).update(contact).run()
