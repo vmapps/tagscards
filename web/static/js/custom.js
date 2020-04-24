@@ -36,16 +36,16 @@ function confirmDialog(message,handler) {
 // --------------------------------------------------------
 // GET CHECKED
 // --------------------------------------------------------
-function getChecked() {
-    var ids = [];
+function getChecked(field) {
+    var tmp = [];
 
     $('.contact_check').each(function() {
         if( $(this).prop('checked') ) {
-            ids.push( $(this).attr('data-id') );
+            tmp.push( $(this).attr(field) );
         }
     });
 
-    return( ids );
+    return( tmp );
 }
 
 // --------------------------------------------------------
@@ -122,7 +122,7 @@ $( document ).ready(function() {
         $('#bulk_export_json').click( function(event){
             event.preventDefault();
             // get contacts ids
-            ids = getChecked()
+            ids = getChecked('data-id')
             // submit form
             $('#bulk_export_format').val('json');
             $('#bulk_export_contacts').val(ids);
@@ -135,11 +135,22 @@ $( document ).ready(function() {
         $('#bulk_export_csv').click( function(event){
             event.preventDefault();
             // get contacts ids
-            ids = getChecked()
+            ids = getChecked('data-id')
             // submit form
             $('#bulk_export_format').val('csv');
             $('#bulk_export_contacts').val(ids);
             $('#bulk_export_form').submit();
+        });
+    }
+
+    // bulk - export email
+    if( $('#bulk_export_email').length ) {
+        $('#bulk_export_email').click( function(event){
+            event.preventDefault();
+            // get contacts ids
+            ids = getChecked('data-email')
+            // redirect
+            window.location.href = 'mailto:?bcc=' + ids
         });
     }
 
@@ -148,7 +159,7 @@ $( document ).ready(function() {
         $('#bulk_tag_add').click( function(event){
             event.preventDefault();
             // get contacts ids
-            ids = getChecked()
+            ids = getChecked('data-id')
             // call bulk function
             $.post( path_contacts + '/bulk', {
                 method: 'add',
@@ -165,7 +176,7 @@ $( document ).ready(function() {
         $('#bulk_tag_del').click( function(event){
             event.preventDefault();
             // get contacts ids
-            ids = getChecked()
+            ids = getChecked('data-id')
             // call bulk function
             $.post( path_contacts + '/bulk', {
                 method: 'del',

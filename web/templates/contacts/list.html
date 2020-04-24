@@ -36,7 +36,7 @@
     <tbody>
         {% for c in contacts %}
         <tr class="small">
-            <th scope="row"><input class="contact_check" data-id="{{ c.id }}" type="checkbox"></th>
+            <th scope="row"><input class="contact_check" data-id="{{ c.id }}" data-email="{{ c.email }}" type="checkbox"></th>
             <td>{{ c.fullname }}</td>
             <td>{{ c.role }}</td>
             <td>
@@ -86,6 +86,7 @@
                         <div class="dropdown-menu">
                             <a id="bulk_export_json" class="dropdown-item small" href="#">as JSON file</a>
                             <a id="bulk_export_csv" class="dropdown-item small" href="#">as CSV file</a>
+                            <a id="bulk_export_email" class="dropdown-item small" href="#">as EMAIL recipients</a>
                         </div>
                         <form id="bulk_export_form" action="{{ url_for('export_bulk') }}" method="POST">
                             <input type="hidden" id="bulk_export_format" name="format">

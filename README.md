@@ -98,7 +98,8 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Tags input with auto-completion
 - Admin user authentication
 - Sorting (asc/desc) on columns
-- Export to JSON/CSV files
+- Export contacts as JSON/CSV files
+- Export contacts as EMAIL recipients
 - Export to vCard
 - :lock: Bulk mode to add/del tags
 - :lock: Import from CSV
