@@ -19,13 +19,14 @@
     <table class="table table-hover table-sm">
     <thead class="thead-dark">
         <tr class="small">
-            <th scope="col">#</th>
+            <th scope="col"><input id="contact_checkall" type="checkbox"></th>
             <th scope="col">Full name <a href="{{ urlsort }}fullname" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Role <a href="{{ urlsort }}role" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Email <a href="{{ urlsort }}email" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">PGP <a href="{{ urlsort }}pgp" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Phone <a href="{{ urlsort }}phone" class="text-white"><i class="fa fa-fw fa-sort"></i></a></th>
             <th scope="col">Web</th>
+            <th scope="col">vCard</th>
             <th scope="col">Tags</th>
             {% if session['logged'] %}
             <th scope="col">Actions</th>
@@ -35,7 +36,7 @@
     <tbody>
         {% for c in contacts %}
         <tr class="small">
-            <th scope="row"><a href="#" class="vcard_btn text-dark" data-id="{{ c.id }}" title="download vCard for '{{ c.fullname }}'"><i class="far fa-address-card"></i></a></th>
+            <th scope="row"><input class="contact_check" data-id="{{ c.id }}" type="checkbox"></th>
             <td>{{ c.fullname }}</td>
             <td>{{ c.role }}</td>
             <td>
@@ -58,6 +59,7 @@
                     <a href="{{ c.website }}" target="_new" class="text-dark" title="visite website for '{{ c.fullname }}'"><i class="fas fa-external-link-alt"></i></a>
                 {% endif %}
             </td>
+            <td><a href="#" class="vcard_btn text-dark" data-id="{{ c.id }}" title="download vCard for '{{ c.fullname }}'"><i class="far fa-address-card"></i></a></td>
             <td>
                 {% if c.tags|length > 0 %}
                     {% for t in c.tags|sort %}
@@ -78,7 +80,18 @@
 
         {% if session['logged'] %}
         <tr class="small">
-            <td colspan=8></td>
+            <td colspan=9>
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">actions</button>
+                        <div class="dropdown-menu">
+                            <a id="actions_addtag" class="dropdown-item small" href="#">add tag(s)</a>
+                            <a id="actions_deltag" class="dropdown-item small" href="#">delete tag(s)</a>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control btn-sM" name="actions_tags" id="actions_tags" value="" placeholder="enter tags ...">
+                </div>
+            </td>
             <td><a href="{{ url_for('contacts_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i></a></td>
         </tr>
         {% endif %}

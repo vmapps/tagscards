@@ -182,3 +182,38 @@ def contacts_import():
                 
     return render_template('contacts/import.html')
 
+# --------------------------------------------------------
+# CONTACTS - BULK
+# --------------------------------------------------------
+@app.route('/contacts/bulk',methods=['POST'])
+@login_required
+def contacts_bulk():
+    if( request.method=='POST' ):
+
+        if( request.form['method'] and not request.form['tags']=='' ):
+            for c in request.form.getlist('contacts[]'):
+                # get tags from contact
+                res = r.table('contacts').get(c).run()
+                # nerge tags with tags to add
+                tags1 = list(res['tags']) 
+                tags2 = request.form['tags'].split(',')
+
+                if( request.form['method']=='add'):
+                    # update contact with tags (union)
+                    res = r.table('contacts').get(c).update({
+                        'tags': set(tags1).union( set(tags2) )
+                    }).run()
+
+                if( request.form['method']=='del'):
+                    # update contact with tags (union)
+                    res = r.table('contacts').get(c).update({
+                        'tags': {element for element in tags1 if element not in tags2}
+                    }).run()
+
+            flash('contacts updated with tags!','success')
+            return redirect(url_for('contacts_list'))
+
+        flash('error when updating contacts with tags !','danger')
+
+    return redirect(url_for('contacts_list'))
+

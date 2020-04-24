@@ -83,18 +83,77 @@ $( document ).ready(function() {
         });
     }
 
+    // export contact as vCard
     if( $('.vcard_btn').length ) {
         $('.vcard_btn').click( function(event){
             event.preventDefault();
-            window.location.href = exportpath + '/vcard/' + $(this).attr("data-id"); 
-            // $.ajax({
-            //     url: exportpath + '/vcard/' + $(this).attr("data-id"),
-            //     contentType: "text/directory",
-
-            //     success: function(data){
-            //         console.log(data);
-            // }});
+            window.location.href = exportpath + '/vcard/' + $(this).attr('data-id'); 
         });
     }
+
+    // check/uncheck all contacts
+    if( $('#contact_checkall').length ) {
+        $('#contact_checkall').click( function(event){
+            flag = $('#contact_checkall').prop('checked');
+            $('.contact_check').each(function() {
+                $(this).prop('checked',flag);
+            });
+        });
+    }
+
+    // actions - add tags
+    if( $('#actions_addtag').length ) {
+        $('#actions_addtag').click( function(event){
+            event.preventDefault();
+            // get contacts ids
+            var ids = [];
+            $('.contact_check').each(function() {
+                if( $(this).prop('checked') ) {
+                    ids.push( $(this).attr('data-id') );
+                }
+            });
+            // call bulk function
+            $.post('/contacts/bulk',{
+                method: 'add',
+                contacts: ids,
+                tags: $('#actions_tags').val()
+            }, function(data, status){
+                window.location.href = '/';
+            });
+        });
+    }
+
+    // actions - del tags
+    if( $('#actions_deltag').length ) {
+        $('#actions_deltag').click( function(event){
+            event.preventDefault();
+            // get contacts ids
+            var ids = [];
+            $('.contact_check').each(function() {
+                if( $(this).prop('checked') ) {
+                    ids.push( $(this).attr('data-id') );
+                }
+            });
+            // call bulk function
+            $.post('/contacts/bulk',{
+                method: 'del',
+                contacts: ids,
+                tags: $('#actions_tags').val()
+            }, function(data, status){
+                window.location.href = '/';
+            });
+        });
+    }
+    // actions - input tags autocompletion
+    if( $('#actions_tags').length ) {
+        $.getJSON( exportpath + '/tags', function(data) {
+            $('input[name="actions_tags"]').amsifySuggestags({
+                suggestions: data['tags'],
+                defaultTagClass: 'btn-sm',
+            },'refresh');
+        });
+    }
+
+
 });
 

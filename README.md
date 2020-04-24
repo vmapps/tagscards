@@ -97,11 +97,12 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Bootstrap 4 ready
 - Tags input with auto-completion
 - Admin user authentication
-- Sorting on columns
+- Sorting (asc/desc) on columns
 - Export to JSON/CSV files
 - Export to vCard
-- Users management
-- Import from CSV
+- (admin) Bulk mode tto add/del tags
+- (admin) Import from CSV
+- (admin) Users management
 
 ## Todo list
 - [x] ~~bootstrap 4 integration~~
@@ -122,7 +123,8 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - [x] ~~export users as JSON/CSV file~~
 - [x] ~~import contacts from CSV file~~
 - [x] ~~manage flask messages~~
-- [x] ~~add fields for notes (reserved to admin)~~
+- [x] ~~add fields for notes (reserved to admins)~~
+- [x] ~~bulk mode to add/remove tags on multiple contacts~~
 - [ ] manage pagination
 - [ ] syntax check when editing fields
 - [ ] pretty nice things to enhace interface
