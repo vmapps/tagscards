@@ -73,9 +73,9 @@ def main(argv):
             r.table('users').insert({
                 'username': 'admin', 
                 'email': '',
-                'password': 'sha256$rKuw19OQ$df9f3737a5d6310e3e35b2a987155c22d535d2cd6d6bd507a07b9d9b3b0dd6f3'
+                'password': 'sha256$zwmdPo4e$59122744f59e7197a396c3db3fa340eba975ae2316b5685e3e3091a6e932a024'
             }).run();
-            print('[4/4] User "admin" created !')
+            print('[4/4] User "admin" created (password="tagscards") !')
             
         else:
             print('[ERROR] Database "%s" already exists !' % app.config['RETHINKDB_BASE'])

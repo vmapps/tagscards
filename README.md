@@ -78,7 +78,7 @@ $ ./manage.py --init
 [1/4] database "test" created !
 [2/4] table "contacts" created !
 [3/4] table "users" created !
-[4/4] user "admin" created !
+[4/4] user "admin" created  (password="tagscards") !
 
 $ ./manage.py --thread
 ```
