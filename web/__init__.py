@@ -33,10 +33,10 @@ def before_request():
     app.permanent_session_lifetime = timedelta( minutes=app.config['SESSION_TIMEOUT'] )
     # get global db handler
     if not hasattr(g,'rethinkdb'):
-        g.rethinkdb = r.connect( \
-            host=app.config['RETHINKDB_HOST'], \
-            port=app.config['RETHINKDB_PORT'], \
-            db=app.config['RETHINKDB_BASE'] \
+        g.rethinkdb = r.connect(
+            host=app.config['RETHINKDB_HOST'],
+            port=app.config['RETHINKDB_PORT'],
+            db=app.config['RETHINKDB_BASE']
         ).repl()
 
 @app.teardown_appcontext

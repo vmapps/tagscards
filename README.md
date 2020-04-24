@@ -48,7 +48,7 @@ r.db('<your_database_name>).table('users').insert({
        password: '<your_hashed_password'
 })
 ```
-## Configuration
+## Configuration (optional if you use `manage.py --init` - see below)
 Settings have to be defined into `web/config.py` file :
 ```
 ...
@@ -59,18 +59,26 @@ RETHINKDB_BASE = '<your_database_name>'
 ...
 ```
 ## Run
-Finally, run the flask server using following command:
+Finally, use script `manage.py` ro init/run the flask server using following command:
 ```
 $ ./manage.py --help
 Usage: ./manage.py [options]
 
 Options:
-       -b, --bind=ADDRESS  bind to specific ip ADDRESS (default 0.0.0.0)
-       -d, --debug         run in debug mode (default False)
-       -h, --help          display this help and exit
-       -p, --port=PORT     listen to specific PORT (default 8000)
-       -t, --thread        run in threaded mode (default False)
+       -b, --bind=ADDRESS   bind to specific ip ADDRESS (default 0.0.0.0)
+       -d, --debug          run in debug mode (default False)
+       -i, --init           initialize database, tables and user admin
+       -h, --help           display this help and exit
+       -p, --port=PORT      listen to specific PORT (default 8000)
+       -t, --thread         run in threaded mode (default False)
 
+$ ./manage.py --init
+```
+[1/4] Database "test" created !
+[2/4] Table "contacts" created !
+[3/4] Table "users" created !
+[4/4] User "admin" created !
+```
 $ ./manage.py --thread
 ```
 ## Import contacts
