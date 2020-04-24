@@ -23,7 +23,7 @@ Modules could be installed using following command:
 $ pip install -r requirements.txt
 ```
 ## Database initialization
-IMPORTANT NOTE: Following steps are now optional if you run `manage.py --init` (see section `Run`)
+:warning: Following steps are now optional if you run `manage.py --init` (see section `Run`)
 
 First, you will have to generate SHA-256 password from the user `admin`:
 ```
@@ -104,28 +104,28 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Import from CSV
 
 ## Todo list
-- ~~bootstrap 4 integration~~
-- ~~autocompletion for tags input~~
-- ~~search with multiple tags~~
-- ~~actions to add/edit/delete records~~
-- ~~add PGP field~~
-- ~~add position field~~
-- ~~add website field~~
-- ~~add sort asc/desc on fields~~
-- ~~add icons support~~
-- ~~fields text search support~~
-- ~~login/logout functions~~
-- ~~add session timeout~~
-- ~~export as vCard format~~
-- ~~add users management~~
-- ~~export contacts as JSON file~~
-- ~~export users as JSON file~~
-- ~~import contacts from CSV file~~
-- ~~manage flask messages~~
-- manage pagination
-- syntax check when editing fields
-- pretty nice things to enhace interface
-- export for bulk mode
+- [x] bootstrap 4 integration
+- [x] autocompletion for tags input
+- [x] search with multiple tags
+- [x] actions to add/edit/delete records
+- [x] add PGP field
+- [x] add position field
+- [x] add website field
+- [x] add sort asc/desc on fields
+- [x] add icons support
+- [x] fields text search support
+- [x] login/logout functions
+- [x] add session timeout
+- [x] export as vCard format
+- [x] add users management
+- [x] export contacts as JSON file
+- [x] export users as JSON file
+- [x] import contacts from CSV file
+- [x] manage flask messages
+- [ ] manage pagination
+- [ ] syntax check when editing fields
+- [ ] pretty nice things to enhace interface
+- [ ] export for bulk mode
 - ...
 
 ## Samples 
