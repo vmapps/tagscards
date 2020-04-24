@@ -61,7 +61,7 @@ RETHINKDB_BASE = '<your_database_name>'
 ...
 ```
 ## Run
-Finally, use script `manage.py` ro init/run the flask server using following command:
+Finally, use script `manage.py` ro init to database and run the flask server :
 ```
 $ ./manage.py --help
 Usage: ./manage.py [options]
