@@ -100,9 +100,9 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Sorting (asc/desc) on columns
 - Export to JSON/CSV files
 - Export to vCard
--  (:lock: admins)Bulk mode to add/del tags
--  (:lock: admins) Import from CSV
--  (:lock: admins) Users management
+- :lock: Bulk mode to add/del tags
+- :lock: Import from CSV
+- :lock: Users management
 
 ## Todo list
 - [x] ~~bootstrap 4 integration~~
