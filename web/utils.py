@@ -31,7 +31,7 @@ def get_info(key=''):
             tags[t] += 1
 
     # for key,val in tags.items():
-    #     print( "%s : %d" % (key,val) )
+    #     print( '{0} : {1} '.format(key,val) )
     # return (tot,tags)
     info = {}
     info['records'] = tot

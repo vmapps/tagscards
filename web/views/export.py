@@ -32,15 +32,37 @@ def export_tags():
 # --------------------------------------------------------
 # EXPORT - CONTACTS
 # --------------------------------------------------------
-@app.route('/export/contacts')
-def export_contacts():
+@app.route('/export/contacts/<fmt>')
+def export_contacts(fmt):
     res = r.table('contacts').run()
 
-    filename = '"contacts-%s.json"' % datetime.date.today()
-    return( jsonify( list(res) ), 200, {
-        'ContentType':'application/json',
-        'Content-Disposition': 'attachment; filename=' + filename
-    }) 
+    if( fmt=='json' ):
+        filename = '"contacts-{0}.json"'.format( datetime.date.today() )
+        data = jsonify( list(res) )
+
+        return( data, 200, {
+            'ContentType':'application/json',
+            'Content-Disposition': 'attachment; filename=' + filename
+        }) 
+
+    elif( fmt=='csv' ):
+        filename = '"contacts-{0}.csv"'.format( datetime.date.today() )
+        data = ''
+        for c in res:
+            data += '{0};{1};{2};{3};{4};{5};{6}\n'.format( 
+                c['fullname'],
+                c['role'],
+                c['email'],
+                c['pgp'],
+                c['phone'],
+                c['website'],
+                ','.join(c['tags'])
+            )
+
+        return( data, 200, {
+            'ContentType':'text/csv',
+            'Content-Disposition': 'attachment; filename=' + filename
+        }) 
 
 # --------------------------------------------------------
 # EXPORT - USERS
@@ -50,7 +72,7 @@ def export_contacts():
 def export_users():
     res = r.table('users').run()
 
-    filename = '"users-%s.json"' % datetime.date.today()
+    filename = '"users-{0}.json"'.format( datetime.date.today() )
     return( jsonify( list(res) ), 200, {
         'ContentType':'application/json',
         'Content-Disposition': 'attachment; filename=' + filename
@@ -65,15 +87,15 @@ def export_vcard(id):
 
     vcf = '''BEGIN:VCARD
 VERSION:3.0
-FN;CHARSET=UTF-8:%s
-N;CHARSET=UTF-8:%s;;;;
-EMAIL;CHARSET=UTF-8:%s
-TEL;TYPE=WORK,VOICE:%s
-ORG;CHARSET=UTF-8:%s
-URL;type=WORK;CHARSET=UTF-8:%s
-NOTE;CHARSET=UTF-8:PGP KEY ID=%s
-REV:%sZ
-END:VCARD''' % (
+FN;CHARSET=UTF-8:{0}
+N;CHARSET=UTF-8:{1};;;;
+EMAIL;CHARSET=UTF-8:{2}
+TEL;TYPE=WORK,VOICE:{3}
+ORG;CHARSET=UTF-8:{4}
+URL;type=WORK;CHARSET=UTF-8:{5}
+NOTE;CHARSET=UTF-8:PGP KEY ID={6}
+REV:{7}Z
+END:VCARD'''.format(
         res['fullname'],
         res['fullname'],
         res['email'],
@@ -84,7 +106,7 @@ END:VCARD''' % (
         datetime.datetime.now().isoformat()[:23]
     )
 
-    filename = '"%s.vcf"' % res['fullname']
+    filename = '"{0}.vcf"'.format( res['fullname'] )
     return( vcf, 200, {
         'ContentType':'text/directory',
         'Content-Disposition': 'attachment; filename=' + filename

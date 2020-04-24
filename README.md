@@ -98,7 +98,8 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Tags input with auto-completion
 - Admin user authentication
 - Sorting on columns
-- Export as vCard
+- Export to JSON/CSV files
+- Export to vCard
 - Users management
 - Import from CSV
 
@@ -118,7 +119,7 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - [x] ~~export as vCard format~~
 - [x] ~~add users management~~
 - [x] ~~export contacts as JSON file~~
-- [x] ~~export users as JSON file~~
+- [x] ~~export users as JSON/CSV file~~
 - [x] ~~import contacts from CSV file~~
 - [x] ~~manage flask messages~~
 - [x] ~~add fields for notes (reserved to admin)~~
