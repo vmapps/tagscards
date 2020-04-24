@@ -51,7 +51,8 @@ r.db('<your_database_name>).table('users').insert({
 ## Configuration
 Following steps are now optional if you run `manage.py --init` (see section `Run`)
 
-Settings have to be defined into `web/config.py` file :w```
+Settings have to be defined into `web/config.py` file
+```
 ...
 # database
 RETHINKDB_HOST = 'localhost'
