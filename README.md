@@ -103,24 +103,24 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - Import from CSV
 
 ## Todo list
-- [x] bootstrap 4 integration
-- [x] autocompletion for tags input
-- [x] search with multiple tags
-- [x] actions to add/edit/delete records
-- [x] add PGP field
-- [x] add position field
-- [x] add website field
-- [x] add sort asc/desc on fields
-- [x] add icons support
-- [x] fields text search support
-- [x] login/logout functions
-- [x] add session timeout
-- [x] export as vCard format
-- [x] add users management
-- [x] export contacts as JSON file
-- [x] export users as JSON file
-- [x] import contacts from CSV file
-- [x] manage flask messages
+- [x] ~~bootstrap 4 integration~~
+- [x] ~~autocompletion for tags input~~
+- [x] ~~search with multiple tags~~
+- [x] ~~actions to add/edit/delete records~~
+- [x] ~~add PGP field~~
+- [x] ~~add position field~~
+- [x] ~~add website field~~
+- [x] ~~add sort asc/desc on fields~~
+- [x] ~~add icons support~~
+- [x] ~~fields text search support~~
+- [x] ~~login/logout functions~~
+- [x] ~~add session timeout~~
+- [x] ~~export as vCard format~~
+- [x] ~~add users management~~
+- [x] ~~export contacts as JSON file~~
+- [x] ~~export users as JSON file~~
+- [x] ~~import contacts from CSV file~~
+- [x] ~~manage flask messages~~
 - [ ] manage pagination
 - [ ] syntax check when editing fields
 - [ ] pretty nice things to enhace interface
