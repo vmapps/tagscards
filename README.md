@@ -19,25 +19,25 @@ Following python modules are required :
 - [RethinkDB](https://rethinkdb.com/)
 
 Modules could be installed using following command:
-```bash
+```
 $ pip install -r requirements.txt
 ```
 ## Database initialization
 :warning: Following steps are now optional if you run `manage.py --init` (see section `Run`)
 
-First, you will have to generate SHA-256 password from the user `admin`:
-```python
+First, you will have to generate SHA-256 password from the user `admin` (password will be `tagscards` here):
+```
 $ python3
 >>> from werkzeug.security import generate_password_hash
 >>> print( generate_password_hash("<your_admin_password>","sha256") )
-sha256$rKuw19OQ$df9f3737a5d6310e3e35b2a987155c22d535d2cd6d6bd507a07b9d9b3b0dd6f3
+sha256$zwmdPo4e$59122744f59e7197a396c3db3fa340eba975ae2316b5685e3e3091a6e932a024
 ```
 Then, using RethinkDB Data Explorer (`http://localhost:8080/#dataexplorer`), you will initialize the database :
 - create database `<your_database_name>`
 - create table `contacts`
 - create tables `users` (different than RethinkDB internal one)
 - create user `admin`
-```python
+```
 r.dbCreate('<your_database_name>')
 
 r.db('<your_database_name>).tableCreate('contacts')
@@ -52,7 +52,7 @@ r.db('<your_database_name>).table('users').insert({
 ```
 ## Configuration
 Settings have to be defined into `web/config.py` file
-```python
+```
 ...
 # database
 RETHINKDB_HOST = 'localhost'
@@ -62,7 +62,7 @@ RETHINKDB_BASE = '<your_database_name>'
 ```
 ## Run
 Finally, use script `manage.py` ro init to database and run the flask server :
-```bash
+```
 $ ./manage.py --help
 Usage: ./manage.py [options]
 
