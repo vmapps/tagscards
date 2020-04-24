@@ -25,6 +25,7 @@
                     </li>
                     {% endif %}
 
+                {% if False %}
                 <li class="nav-item dropdown m-1">
                     <a class="nav-link btn btn-sm btn-secondary active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-download"></i> export</a>
                     <div class="dropdown-menu">
@@ -32,6 +33,8 @@
                         <a class="dropdown-item" href="{{ url_for('export_contacts',fmt='csv') }}">as CSV file</a>
                     </div>
                 </li>
+                {% endif %}
+
                 <li class="nav-item m-1">
                     {% if session['logged'] %}
                         <a class="nav-link btn btn-sm btn-secondary" href="{{ url_for('admin_logout') }}"><i class="fas fa-sign-out-alt"></i> sign out</a>

@@ -78,23 +78,36 @@
         </tr>
         {% endfor %}
 
-        {% if session['logged'] %}
         <tr class="small">
             <td colspan=9>
                 <div class="input-group">
-                    <div class="input-group-append">
-                        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">actions</button>
+                    <div class="input-group-append m-1">
+                        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">export</button>
                         <div class="dropdown-menu">
-                            <a id="actions_addtag" class="dropdown-item small" href="#">add tag(s)</a>
-                            <a id="actions_deltag" class="dropdown-item small" href="#">delete tag(s)</a>
+                            <a id="bulk_export_json" class="dropdown-item small" href="#">as JSON file</a>
+                            <a id="bulk_export_csv" class="dropdown-item small" href="#">as CSV file</a>
+                        </div>
+                        <form id="bulk_export_form" action="{{ url_for('export_bulk') }}" method="POST">
+                            <input type="hidden" id="bulk_export_format" name="format">
+                            <input type="hidden" id="bulk_export_contacts" name="contacts">
+                        </form>
+                    </div>
+                    {% if session['logged'] %}
+                    <div class="input-group-append m-1">
+                        <button class="btn btn-sm btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">actions</button>
+                        <div class="dropdown-menu">
+                            <a id="bulk_tag_add" class="dropdown-item small" href="#">add tag(s)</a>
+                            <a id="bulk_tag_del" class="dropdown-item small" href="#">delete tag(s)</a>
                         </div>
                     </div>
                     <input type="text" class="form-control btn-sM" name="actions_tags" id="actions_tags" value="" placeholder="enter tags ...">
+                    {% endif %}
                 </div>
             </td>
+            {% if session['logged'] %}
             <td><a href="{{ url_for('contacts_add') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus-square"></i></a></td>
+            {% endif %}
         </tr>
-        {% endif %}
 
     </tbody>
     </table>

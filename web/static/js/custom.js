@@ -3,7 +3,8 @@
 // Globals
 // --------------------------------------------------------
 
-var exportpath = '/export';
+var path_contacts = '/contacts';
+var path_export = '/export';
 
 // --------------------------------------------------------
 // CONFIRM DIALOG
@@ -33,6 +34,21 @@ function confirmDialog(message,handler) {
 }
 
 // --------------------------------------------------------
+// GET CHECKED
+// --------------------------------------------------------
+function getChecked() {
+    var ids = [];
+
+    $('.contact_check').each(function() {
+        if( $(this).prop('checked') ) {
+            ids.push( $(this).attr('data-id') );
+        }
+    });
+
+    return( ids );
+}
+
+// --------------------------------------------------------
 // JQUERY READY
 // --------------------------------------------------------
 $( document ).ready(function() {
@@ -47,14 +63,14 @@ $( document ).ready(function() {
         // var search = $('#search_input').val().replace(/ /g,'').replace(/\,$/,'').toLowerCase();
         var search = $('#search_input').val().toLowerCase();
 
-        if(search) window.location.href = '/contacts/search/' + search;        
+        if(search) window.location.href = path_contacts + '/search/' + search;        
         return false;
     });
 
     // run autocompletion on tag input
     if( $('#contact_tags').length ) {
         // https://github.com/amsify42/jquery.amsify.suggestags#suggestions-through-ajax
-        $.getJSON( exportpath + '/tags', function(data) {
+        $.getJSON( path_export + '/tags', function(data) {
             $('input[name="contact_tags"]').amsifySuggestags({
                 // showAllSuggestions: true,
                 suggestions: data['tags'],
@@ -87,7 +103,7 @@ $( document ).ready(function() {
     if( $('.vcard_btn').length ) {
         $('.vcard_btn').click( function(event){
             event.preventDefault();
-            window.location.href = exportpath + '/vcard/' + $(this).attr('data-id'); 
+            window.location.href = path_export + '/vcard/' + $(this).attr('data-id'); 
         });
     }
 
@@ -101,19 +117,40 @@ $( document ).ready(function() {
         });
     }
 
-    // actions - add tags
-    if( $('#actions_addtag').length ) {
-        $('#actions_addtag').click( function(event){
+    // bulk - export json
+    if( $('#bulk_export_json').length ) {
+        $('#bulk_export_json').click( function(event){
             event.preventDefault();
             // get contacts ids
-            var ids = [];
-            $('.contact_check').each(function() {
-                if( $(this).prop('checked') ) {
-                    ids.push( $(this).attr('data-id') );
-                }
-            });
+            ids = getChecked()
+            // submit form
+            $('#bulk_export_format').val('json');
+            $('#bulk_export_contacts').val(ids);
+            $('#bulk_export_form').submit();
+        });
+    }
+
+    // bulk - export csv
+    if( $('#bulk_export_csv').length ) {
+        $('#bulk_export_csv').click( function(event){
+            event.preventDefault();
+            // get contacts ids
+            ids = getChecked()
+            // submit form
+            $('#bulk_export_format').val('csv');
+            $('#bulk_export_contacts').val(ids);
+            $('#bulk_export_form').submit();
+        });
+    }
+
+    // bulk - add tags
+    if( $('#bulk_tag_add').length ) {
+        $('#bulk_tag_add').click( function(event){
+            event.preventDefault();
+            // get contacts ids
+            ids = getChecked()
             // call bulk function
-            $.post('/contacts/bulk',{
+            $.post( path_contacts + '/bulk', {
                 method: 'add',
                 contacts: ids,
                 tags: $('#actions_tags').val()
@@ -123,19 +160,14 @@ $( document ).ready(function() {
         });
     }
 
-    // actions - del tags
-    if( $('#actions_deltag').length ) {
-        $('#actions_deltag').click( function(event){
+    // bulk - del tags
+    if( $('#bulk_tag_del').length ) {
+        $('#bulk_tag_del').click( function(event){
             event.preventDefault();
             // get contacts ids
-            var ids = [];
-            $('.contact_check').each(function() {
-                if( $(this).prop('checked') ) {
-                    ids.push( $(this).attr('data-id') );
-                }
-            });
+            ids = getChecked()
             // call bulk function
-            $.post('/contacts/bulk',{
+            $.post( path_contacts + '/bulk', {
                 method: 'del',
                 contacts: ids,
                 tags: $('#actions_tags').val()
@@ -144,9 +176,10 @@ $( document ).ready(function() {
             });
         });
     }
+
     // actions - input tags autocompletion
     if( $('#actions_tags').length ) {
-        $.getJSON( exportpath + '/tags', function(data) {
+        $.getJSON( path_export + '/tags', function(data) {
             $('input[name="actions_tags"]').amsifySuggestags({
                 suggestions: data['tags'],
                 defaultTagClass: 'btn-sm',

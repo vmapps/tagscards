@@ -65,6 +65,48 @@ def export_contacts(fmt):
         }) 
 
 # --------------------------------------------------------
+# EXPORT - BULK
+# --------------------------------------------------------
+@app.route('/export/bulk',methods=['POST'])
+def export_bulk():
+    print(request.form)
+
+    if( request.method=='POST' ):
+
+        if( request.form['format']=='json' ):
+            filename = '"contacts-{0}.json"'.format( datetime.date.today() )
+            data = []
+            for c in request.form['contacts'].split(','):
+                res = r.table('contacts').get(c).run()
+                data.append(res) 
+
+            data = jsonify(data)
+            return( data, 200, {
+                'ContentType':'application/json',
+                'Content-Disposition': 'attachment; filename=' + filename
+            }) 
+
+        elif( request.form['format']=='csv' ):
+            filename = '"contacts-{0}.csv"'.format( datetime.date.today() )
+            data = ''
+            for c in request.form['contacts'].split(','):
+                res = r.table('contacts').get(c).run()
+                data += '{0};{1};{2};{3};{4};{5};{6}\n'.format( 
+                    res['fullname'],
+                    res['role'],
+                    res['email'],
+                    res['pgp'],
+                    res['phone'],
+                    res['website'],
+                    ','.join(res['tags'])
+                )
+
+            return( data, 200, {
+                'ContentType':'text/csv',
+                'Content-Disposition': 'attachment; filename=' + filename
+            }) 
+
+# --------------------------------------------------------
 # EXPORT - USERS
 # --------------------------------------------------------
 @app.route('/export/users')
