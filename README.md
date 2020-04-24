@@ -125,7 +125,7 @@ Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://
 - [ ] syntax check when editing fields
 - [ ] pretty nice things to enhace interface
 - [ ] export for bulk mode
-- ...
+- [ ] ...
 
 ## Samples 
 ![tagscards1](samples/tagscards1.png)
