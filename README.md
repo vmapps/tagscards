@@ -94,13 +94,13 @@ John Doe;Security Analyst;john.doe@company.com;0x12ABCDEF;55-66-77-88;http://git
 Foo Bar;Windows Administrator;foo.bar@company.com;0x98765432;12-34-56-78;http://github.com/;windows,admin
 ```
 ## Some features
-- Bootstrap 4 reqdy
-- Tags input with auto-completion
-- Admin user authentication
-- Sorting on columns
-- Export as vCard
-- Users management
-- Import from CSV
+:gift: Bootstrap 4 reqdy
+:gift: Tags input with auto-completion
+:gift: Admin user authentication
+:gift: Sorting on columns
+:gift: Export as vCard
+:gift: Users management
+:gift: Import from CSV
 
 ## Todo list
 - [x] ~~bootstrap 4 integration~~
