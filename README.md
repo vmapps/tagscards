@@ -48,9 +48,10 @@ r.db('<your_database_name>).table('users').insert({
        password: '<your_hashed_password'
 })
 ```
-## Configuration (optional if you use `manage.py --init` - see below)
-Settings have to be defined into `web/config.py` file :
-```
+## Configuration
+Following steps are now optional if you run `manage.py --init` (see section `Run`)
+
+Settings have to be defined into `web/config.py` file :w```
 ...
 # database
 RETHINKDB_HOST = 'localhost'
