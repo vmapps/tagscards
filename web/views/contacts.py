@@ -23,7 +23,7 @@ from web.decorators import login_required, isadmin
 from web.utils import get_info, get_sort
 
 # --------------------------------------------------------
-# CONTACTS
+# CONTACTS - LIST
 # --------------------------------------------------------
 @app.route('/contacts')
 def contacts_list():
@@ -33,6 +33,16 @@ def contacts_list():
     res = r.table('contacts').order_by(vsort).run()
 
     return render_template('contacts/list.html',contacts=res,info=info)
+
+# --------------------------------------------------------
+# CONTACTS - GET
+# --------------------------------------------------------
+@app.route('/contacts/<id>')
+def contacts_get(id):
+
+    res = r.table('contacts').get(id).run()
+
+    return render_template('contacts/get.html',contact=res)
 
 # --------------------------------------------------------
 # CONTACTS - TAG

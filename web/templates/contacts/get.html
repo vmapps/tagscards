@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form class="form col-md-6 offset-3">
+    <div class="p-4">
+        <h2><i class="far fa-address-card pr-3"></i> {{ contact.fullname }}</h2>
+    </div>
+    <div class="form-group">
+        <ul>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th><i class="fas fa-sitemap"></i></th>
+                        <td>
+                            {{ contact.role }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="far fa-envelope"></i></th>
+                        <td>
+                            {% if contact.email|length %}
+                                <a href="mailto:{{ contact.email }}" class="text-dark">{{ contact.email }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fas fa-key"></i></th>
+                        <td>
+                            {% if contact.pgp|length %}
+                                <a href="https://pgp.circl.lu/pks/lookup?op=get&search={{ contact.pgp }}" target="_new" class="text-dark">{{ contact.pgp }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fas fa-phone"></i></th>
+                        <td>
+                            {% if contact.phone|length %}
+                                <a href="tel:{{ contact.phone }}" class="text-dark">{{ contact.phone }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fas fa-link"></i></th>
+                        <td>
+                            {% if contact.website|length %}
+                                <a href="{{ contact.website }}" target="_new" class="text-dark">{{ contact.website }}</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fas fa-tags"></i></th>
+                        <td>
+                            {% if contact.tags|length > 0 %}
+                                {% for t in contact.tags|sort %}
+                                    <a href="{{ url_for('contacts_tag',id=t) }}" class="btn btn-outline-secondary btn-sm">{{ t }}</a>
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="far fa-address-card"></i></th>
+                        <td>
+                            <a href="#" class="vcard_btn btn btn-light text-dark" data-id="{{ contact.id }}">vCard</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><a href="{{ url_for('index') }}">Go to homepage</a></p>            
+
+        </ul>
+    </div>
+</form>
+
+{% endblock %}

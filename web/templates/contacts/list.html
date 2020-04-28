@@ -37,7 +37,7 @@
         {% for c in contacts %}
         <tr class="small">
             <th scope="row"><input class="contact_check" data-id="{{ c.id }}" data-email="{{ c.email }}" type="checkbox"></th>
-            <td>{{ c.fullname }}</td>
+            <td><a href="{{ url_for('contacts_get',id=c.id) }}">{{ c.fullname }}</a></td>
             <td>{{ c.role }}</td>
             <td>
                 {% if c.email|length %}
