@@ -62,7 +62,8 @@ Then, edit the `web/config.py` file to setup following variables :
 # setup
 TAGSCARDS_DATABASE = '<your_database_name>'
 TAGSCARDS_PASSWORD = '<your_admin_password>'
-TAGSCARDS_FULLAUTH = False (True if you want authentication for all pages)
+TAGSCARDS_FULLAUTH = False (True if you want authentication for all pagesr)
+TAGSCARDS_TIMEOUTS = <timeout_session>
 
 # database
 RETHINKDB_HOST = 'localhost'

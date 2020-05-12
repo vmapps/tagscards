@@ -17,6 +17,7 @@ APP_CONTACT	= 'https://github.com/vmapps'
 TAGSCARDS_DATABASE = 'test'
 TAGSCARDS_PASSWORD = 'tagscards'
 TAGSCARDS_FULLAUTH = False
+TAGSCARDS_TIMEOUTS = 15
 
 #-------------------------------------------------------------------
 # database
@@ -37,7 +38,7 @@ STATIC_FOLDER = 'static'
 UPLOAD_FOLDER = 'temp'
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 
-SESSION_TIMEOUT     = 15
+SESSION_TIMEOUT     = TAGSCARDS_TIMEOUTS
 SESSION_TYPE		= 'filesystem'
 SESSION_FILE_DIR	= 'tmp'
 SESSION_FILE_THRESHOLD	= 100
