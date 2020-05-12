@@ -16,7 +16,7 @@ APP_CONTACT	= 'https://github.com/vmapps'
 
 TAGSCARDS_DATABASE = 'test'
 TAGSCARDS_PASSWORD = 'tagscards'
-TAGSCARDS_FULLAUTH = True
+TAGSCARDS_FULLAUTH = False
 
 #-------------------------------------------------------------------
 # database
