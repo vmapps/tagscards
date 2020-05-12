@@ -41,17 +41,17 @@
             <td>{{ c.role }}</td>
             <td>
                 {% if c.email|length %}
-                    <a href="mailto:{{ c.email }}" class="text-dark">{{ c.email }}</a>
+                    <a href="mailto:{{ c.email }}" class="__text-dark">{{ c.email }}</a>
                 {% endif %}
             </td>
             <td>
                 {% if c.pgp|length %}
-                    <a href="https://pgp.circl.lu/pks/lookup?op=get&search={{ c.pgp }}" target="_new" class="text-dark">{{ c.pgp }}</a>
+                    <a href="https://pgp.circl.lu/pks/lookup?op=get&search={{ c.pgp }}" target="_new" class="__text-dark">{{ c.pgp }}</a>
                 {% endif %}
             </td>
             <td>
                 {% if c.phone|length %}
-                    <a href="tel:{{ c.phone }}" class="text-dark">{{ c.phone }}</a>
+                    <a href="tel:{{ c.phone }}" class="__text-dark">{{ c.phone }}</a>
                 {% endif %}
             </td>
             <td>

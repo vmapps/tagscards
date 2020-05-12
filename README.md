@@ -51,13 +51,22 @@ r.db('<your_database_name>).table('users').insert({
 })
 ```
 ## Configuration
-Settings have to be defined into `web/config.py` file
+A sample of settings is located into `web/config-sample.py` file.
+You should first copy that sample file to `web/config.py` :
+```
+cp web/config-sample.py web/config.py
+````
+Then, edit the `web/config.py` file to setup following variables :
 ```
 ...
+# setup
+TAGSCARDS_DATABASE = '<your_database_name>'
+TAGSCARDS_PASSWORD = '<your_admin_password>'
+TAGSCARDS_FULLAUTH = False (True if you want authentication for all pages)
+
 # database
 RETHINKDB_HOST = 'localhost'
 RETHINKDB_PORT = 28015
-RETHINKDB_BASE = '<your_database_name>'
 ...
 ```
 ## Run

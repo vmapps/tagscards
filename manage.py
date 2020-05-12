@@ -5,6 +5,7 @@ import getopt
 
 from rethinkdb import r
 from web import app
+from werkzeug.security import generate_password_hash
 
 def usage():
     print( "Usage: %s [options]\n" % sys.argv[0] )
@@ -73,9 +74,9 @@ def main(argv):
             r.table('users').insert({
                 'username': 'admin', 
                 'email': '',
-                'password': 'sha256$zwmdPo4e$59122744f59e7197a396c3db3fa340eba975ae2316b5685e3e3091a6e932a024'
+                'password': generate_password_hash( app.config['TAGSCARDS_DATABASE'],'sha256' )
             }).run();
-            print('[4/4] User "admin" created (password="tagscards") !')
+            print('[4/4] User "admin" created (password="%s") !' % app.config['TAGSCARDS_PASSWORD'] )
             
         else:
             print('[ERROR] Database "%s" already exists !' % app.config['RETHINKDB_BASE'])

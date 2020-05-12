@@ -16,7 +16,7 @@ from rethinkdb import r
 from collections import defaultdict
 
 from web import app
-from web.decorators import login_required, isadmin
+from web.decorators import login_required, if_full_auth, is_admin 
 
 # --------------------------------------------------------
 # GET INFO

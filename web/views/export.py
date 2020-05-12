@@ -16,13 +16,14 @@ from rethinkdb import r
 from collections import defaultdict
 
 from web import app
-from web.decorators import login_required, isadmin
+from web.decorators import login_required, if_full_auth, is_admin 
 from web.utils import get_info, get_sort
 
 # --------------------------------------------------------
 # EXPORT - TAGS
 # --------------------------------------------------------
 @app.route('/export/tags')
+@if_full_auth
 def export_tags():
     info = get_info()
 
@@ -33,6 +34,7 @@ def export_tags():
 # EXPORT - CONTACTS
 # --------------------------------------------------------
 @app.route('/export/contacts/<fmt>')
+@if_full_auth
 def export_contacts(fmt):
     res = r.table('contacts').run()
 
@@ -68,6 +70,7 @@ def export_contacts(fmt):
 # EXPORT - BULK
 # --------------------------------------------------------
 @app.route('/export/bulk',methods=['POST'])
+@if_full_auth
 def export_bulk():
     print(request.form)
 
@@ -124,6 +127,7 @@ def export_users():
 # EXPORT - VCARD
 # --------------------------------------------------------
 @app.route('/export/vcard/<id>')
+@if_full_auth
 def export_vcard(id):
     res = r.table('contacts').get(id).run()
 

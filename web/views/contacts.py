@@ -19,13 +19,14 @@ from collections import defaultdict
 from werkzeug.utils import secure_filename
 
 from web import app
-from web.decorators import login_required, isadmin
+from web.decorators import login_required, if_full_auth, is_admin 
 from web.utils import get_info, get_sort
 
 # --------------------------------------------------------
 # CONTACTS - LIST
 # --------------------------------------------------------
 @app.route('/contacts')
+@if_full_auth
 def contacts_list():
     vsort = get_sort()
 
@@ -38,6 +39,7 @@ def contacts_list():
 # CONTACTS - GET
 # --------------------------------------------------------
 @app.route('/contacts/<id>')
+@if_full_auth
 def contacts_get(id):
 
     res = r.table('contacts').get(id).run()
@@ -48,6 +50,7 @@ def contacts_get(id):
 # CONTACTS - TAG
 # --------------------------------------------------------
 @app.route('/contacts/tag/<id>')
+@if_full_auth
 def contacts_tag(id):
     lid = id.lower().split(',')
 
@@ -63,6 +66,7 @@ def contacts_tag(id):
 # CONTACTS - SEARCH
 # --------------------------------------------------------
 @app.route('/contacts/search/<id>')
+@if_full_auth
 def contacts_search(id):
     id = id.lower()
     lid = id.split(',')
