@@ -2,7 +2,7 @@ cffi==1.14.0
 click==7.1.1
 Flask==1.1.2
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 pycparser==2.20
 rethinkdb==2.4.6
